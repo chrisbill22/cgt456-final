@@ -1,0 +1,21 @@
+@charset "utf-8";
+/* CSS Document */
+ul{ list-style:none; margin-top:5px;}
+ul li{ display:block; float:left; width:100%; height:1%;}
+ul li label{ float:left; padding:7px; color:#6666ff}
+ul li input, ul li textarea, ul li select{ float:right; margin-right:10px; border:1px solid #ccc; padding:3px; font-family: Georgia, Times New Roman, Times, serif; width:80%;}
+div#titleDiv, div#descDiv, div#linkDiv, div#authorDiv, div#pubDate{ float:right; margin-right:10px; border:1px solid #ccc; padding:3px; font-family: Georgia, Times New Roman, Times, serif; width:80%;}
+li input:focus, li textarea:focus{ border:1px solid #666; }
+fieldset{ padding:10px; border:1px solid #ccc; width:400px; overflow:auto; margin:10px;}
+legend{ color:#000099; margin:0 10px 0 0; padding:0 5px; font-size:11pt; font-weight:bold; }
+fieldset#formFieldset {position:absolute; top:100px; left:20px; width:700px; }
+fieldset#submit {position:absolute; top:440px; left:20px; width:700px; text-align:center; }
+fieldset input#SubmitBtn, fieldset input#CancelBtn{ background:#E5E5E5; color:#000099; border:1px solid #ccc; padding:3px; width:150px; margin:10px;}
+div#errorMsg {color:#ff0000; font-weight:bold; font-size:12pt; position:absolute; top:390px; left:30px; width:700px;}
+div#viewRSS {font-size:12pt; position:absolute; top:100px; left:30px; width:700px;}
+table {width:100%; border:0px; margin:5px; padding:5px;}
+td {padding-left:7px; padding-right:7px;}
+strong {padding-right:9px;}
+p {text-align:center; border-bottom:1px solid #ccc; padding:5px; margin:5px;}
+h1 {text-align:center; width:700px; font-size:14pt; margin:5px; padding:5px;}
+

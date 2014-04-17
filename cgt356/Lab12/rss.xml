@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>CGT 356 Test RSS Feed</title>
+    <link>http://bdawg8569.twilightparadox.com/php/glotzbach/index.php</link>
+    <description>Testing of the new RSS feed built in php</description>
+    <language>en-us</language>
+    <copyright>Purdue University</copyright>
+    <docs>http://bdawg8569.twilightparadox.com/php/glotzbach/index.php</docs>
+    <lastBuildDate>Tuesday, November 3, 2009 11:34am</lastBuildDate>
+    <image>
+			<title>Testing of the new RSS feed built in php</title>
+			<url>http://www2.tech.purdue.edu/cgt/courses/cgt356/images/xml_rss.gif</url>
+			<description>RSS image</description>
+			<link>http://bdawg8569.twilightparadox.com/php/glotzbach/rss.xml</link>
+		</image>
+    
+    <item>
+      <title>s</title>
+      <description>sd fad fas df adsf asd f asdf as df asdf a sdf asd f asdf a sdf asd f asdf as df asd f asdf asd f asdf as df asd fa sdf as df asd f asdf asd f asdf a sdf asd f asdf asd f asdf as df asdf as df asd fas df asd f asdf as df sad fa sdf sa df sadf sa df asd f asdf sad f asdf sa df asdf a sdf asd fa sdf asdf as df asd f asdf asd f asdf asd f asdf asd f asdf as df asdf as df asd fa sdf asd fasdf</description>
+      <link>http://www.google.com</link>
+      <guid>17</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>2009-11-02 13:25:11</pubDate>
+    </item>
+    <item>
+      <title>xxx</title>
+      <description>x</description>
+      <link>http://www.purdue.edu</link>
+      <guid>16</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>2009-11-02 13:26:08</pubDate>
+    </item>
+    <item>
+      <title>vcx</title>
+      <description>asdsdfsdf</description>
+      <link>http://www.google.com</link>
+      <guid>15</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>November 2, 2009 10:30am</pubDate>
+    </item>
+    <item>
+      <title>vcx</title>
+      <description>asdsdfsdf</description>
+      <link>http://www.google.com</link>
+      <guid>14</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>November 1, 2009 10:35am</pubDate>
+    </item>
+    <item>
+      <title>asdf22</title>
+      <description>qwerty</description>
+      <link>http://www.google.com</link>
+      <guid>13</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>November 1, 2009 10:25am</pubDate>
+    </item>
+    <item>
+      <title>asdf</title>
+      <description>qwer</description>
+      <link>http://www.google.com</link>
+      <guid>1</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>November 1, 2009 09:48am</pubDate>
+    </item>
+    <item>
+      <title>new item again</title>
+      <description>new item again</description>
+      <link>http://www.google.com</link>
+      <guid>12</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>October 31, 2009 16:37pm</pubDate>
+    </item>
+    <item>
+      <title>newnew</title>
+      <description>newnew</description>
+      <link>http://www.purdue.edu</link>
+      <guid>11</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>October 31, 2009 16:31pm</pubDate>
+    </item>
+    <item>
+      <title>yet another new item</title>
+      <description>here it is!!!!</description>
+      <link>http://www.google.com</link>
+      <guid>9</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>October 31, 2009 14:26pm</pubDate>
+    </item>
+    <item>
+      <title>newest test</title>
+      <description>this is a newer test item</description>
+      <link>http://www.purdue.edu/cgt/courses/</link>
+      <guid>9</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>October 31, 2009 14:19pm</pubDate>
+    </item>
+    <item>
+      <title>qwerty</title>
+      <description>asdf asd fasd fa sdf d</description>
+      <link>http://www.purdue.edu</link>
+      <guid>8</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>October 29, 2009 11:39am</pubDate>
+    </item>
+    <item>
+      <title>Ron Dupe</title>
+      <description>asdf</description>
+      <link>http://www.purdue.edu</link>
+      <guid>7</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>2009-11-02 13:24:58</pubDate>
+    </item>
+    <item>
+      <title>asdf</title>
+      <description>asdf</description>
+      <link>http://www.purdue.edu</link>
+      <guid>7</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>2007-11-16 16:47:25</pubDate>
+    </item>
+    <item>
+      <title>testing</title>
+      <description>another trial</description>
+      <link>http://www.testing.com</link>
+      <guid>6</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>2007-10-22 16:13:51</pubDate>
+    </item>
+    <item>
+      <title>Final Test?</title>
+      <description>I hope so</description>
+      <link>http://www.playihg.com</link>
+      <guid>5</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>September 9, 2007 10:52am</pubDate>
+    </item>
+    <item>
+      <title>New try at build date</title>
+      <description>trying</description>
+      <link>http://www.trying.com</link>
+      <guid>4</guid>
+      <author>Ronald J. Glotzbach</author>
+      <pubDate>2007-09-09 10:43:21</pubDate>
+    </item>
+  </channel>
+</rss>
