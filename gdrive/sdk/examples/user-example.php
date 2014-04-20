@@ -30,6 +30,10 @@ require_once 'Google/Service/Urlshortener.php';
  $client_secret = '<YOUR_CLIENT_SECRET>';
  $redirect_uri = '<YOUR_REDIRECT_URI>';
 
+ $client_id = "296417278308-fjnuuqrphb47qovob6jks8eoespd02m7.apps.googleusercontent.com";
+ $client_secret = "HdnitURfRNsO8izY6IGYV_-a";
+ //$redirect_uri = "http://localhost/cgt456_final/gdrive/sdk/examples/user-example.php";
+ $redirect_uri = "http://cgtweb1.tech.purdue.edu/456/cgt456web1a/Project3/sdk/examples/user-example.php";
 /************************************************
   Make an API request on behalf of a user. In
   this case we need to have a valid OAuth 2.0
