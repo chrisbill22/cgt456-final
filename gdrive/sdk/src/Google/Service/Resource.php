@@ -176,7 +176,7 @@ class Google_Service_Resource
     $httpRequest = $this->client->getAuth()->sign($httpRequest);
     $httpRequest->setExpectedClass($expected_class);
 
-    if (isset($parameters['data']) &&
+    if (isset($parameters['data']) && !empty($parameters['uploadType']) && 
         ($parameters['uploadType']['value'] == 'media' || $parameters['uploadType']['value'] == 'multipart')) {
       // If we are doing a simple media upload, trigger that as a convenience.
       $mfu = new Google_Http_MediaFileUpload(

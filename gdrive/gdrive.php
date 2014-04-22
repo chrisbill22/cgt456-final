@@ -30,25 +30,16 @@ function startGdrive($subdirToGdrive){
 }
 
 
-//After authentication google will direct back to this page and send the GET variable for that user.
-/*if (isset($_GET['code'])) {
-  $client->authenticate($_GET['code']);
-  $_SESSION['access_token'] = $client->getAccessToken(); //Need to save this access token
-  $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-  header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+
+function authenticate($client, $accessToken, $refreshToken = ""){
+	//Check if access token needs renewed
+	if($client->isAccessTokenExpired() && $refreshToken != ""){
+		$accessToken = $client->refreshToken($accessToken);
+	}
+	
+	$client->setAccessToken($accessToken);
+	return $client;
 }
-
-//If we have the user logged in, set that access token in the class
-if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-  $client->setAccessToken($_SESSION['access_token']);
-} else {
-  $authUrl = $client->createAuthUrl();
-}
-
-//If logging out
-
-*/	
-
 
 function retrieveFiles($service, $folderId = "root") {
 	$result = array();
@@ -62,6 +53,7 @@ function retrieveFiles($service, $folderId = "root") {
 		$parameters = array();
 		$parameters['q'] = "'".$folderId."' in parents";
 		$parameters['q'] .= " and not title contains '~'";
+		$parameters['q'] .= " and trashed = false";
 		//echo $parameters['q'];
 		$parameters['maxResults'] = 300;
 		if ($pageToken) {
@@ -90,6 +82,38 @@ function printFile($service, $fileId) {
   }
 }
 
+
+
+function uploadFile($service, $title, $description, $parentId, $mimeType, $filepath) {
+  $file = new Google_Service_Drive_DriveFile();
+  $file->setTitle($title);
+  $file->setDescription($description);
+  $file->setMimeType($mimeType);
+
+  // Set the parent folder.
+  if ($parentId != null) {
+    $parent = new Google_Service_Drive_ParentReference();
+    $parent->setId($parentId);
+    $file->setParents(array($parent));
+  }
+
+  try {
+    $data = file_get_contents($filepath);
+
+    $createdFile = $service->files->insert($file, array(
+      'data' => $data,
+      'mimeType' => $mimeType,
+    ));
+
+    // Uncomment the following line to print the File ID
+    // print 'File ID: %s' % $createdFile->getId();
+
+    return $createdFile;
+  } catch (Exception $e) {
+    print "An error occurred: " . $e->getMessage();
+  }
+}
+
 ?>
 
 
@@ -98,27 +122,7 @@ function printFile($service, $fileId) {
 <?php 
 if(isset($authUrl)){ ?>
 	<a href="<?php echo $authUrl; ?>">You must connect an account first.</a>
-<?php 
-}else{
-	//if ($client->getAccessToken()) {
-		//$service = new Google_Service_Drive($client);
-	//}
-	//echo $client->getAccessToken();
-	//$allFiles = retrieveAllFiles($service);
-	/*
-	echo "<hr />";
-	foreach($allFiles as $file){
-		echo $file->title."<br />";
-	}
-	echo $allFiles[0]->owners[0]->displayName;
-	echo "<hr />";*/
-	
-	//echo json_encode($allFiles);
-	
-	
-	//1printFile($service, "0B--_J4Jg24DTMlQ4RDhDTjU2a28");
-}	
-?>
+<?php } ?>
 
 
 
