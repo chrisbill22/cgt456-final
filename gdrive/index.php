@@ -36,7 +36,9 @@
 		<hr />
 		<small id="authToken"></small>
 		<div id="results"></div>
+		<!--
 		<div id="message" style="z-index:101; position:fixed; bottom:0px; left:0px; right:0px; width:100%; padding:10px; text-align: center; background-color: #333; color:#DDD;"></div>
+		-->
 	</body>
 </html>
 

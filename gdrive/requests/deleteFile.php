@@ -1,6 +1,6 @@
 <?php
 //POST - access_token
-//POST - folder
+//POST - fileID
 
 $subdir = "../";
 
@@ -12,7 +12,7 @@ $client = authenticate($client, $_POST['access_token']);
 
 $service = new Google_Service_Drive($client);
 
-$allFiles = retrieveFiles($service, $_POST['folderID']);
-echo json_encode($allFiles);
+$deleteResult = deleteFile($service, $_POST['fileID']);
+echo $deleteResult;
 
 ?>

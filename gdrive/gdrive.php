@@ -77,7 +77,6 @@ function retrieveFiles($service, $folderId = "root") {
 	return $result;
 }
 
-
 function printFile($service, $fileId) {
   try {
     $file = $service->files->get($fileId);
@@ -120,6 +119,16 @@ function uploadFile($service, $title, $description, $parentId, $mimeType, $filep
   } catch (Exception $e) {
     print "An error occurred: " . $e->getMessage();
   }
+}
+
+
+function deleteFile($service, $fileId){
+	try{
+		$service->files->delete($fileId);
+		return "True";
+	}catch (Exception $e){
+		print "An error occurred: " . $e->getMessage();
+	}
 }
 
 if(isset($authUrl)){ ?>

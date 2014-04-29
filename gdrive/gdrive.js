@@ -3,15 +3,50 @@ var filePath = Array("root");
 var accessToken;
 var accessObj;
 
-function displayMsg(string){
+$(document).ready(function(){
+	
+});
+
+
+/*function displayMsg(string){
 	$("#message").html('');
 	$("#message").html(string);
 	console.log(string);
+}*/
+
+function linkDeletes(displayDivID){
+	$("a.deleteBt").click(function(event){
+		event.preventDefault();
+		deleteFile($(this).attr("href"), displayDivID);
+	});
+}
+function deleteFile(fileID, displayDivID){
+	var confirmResult = confirm("Are you sure you would like to delete this file?"); 
+	if(confirmResult){
+		startLoading("Deleting File");
+		$.ajax({
+	        url: 'requests/deleteFile.php',  //Server script to process data
+	        type: 'POST',
+	        data: {access_token:accessToken, fileID:fileID},
+	    }).done(function(msg) {
+	    	if(msg != "True"){
+	    		alert("ERROR: "+msg);
+	    		stopLoading();
+	    	}else{
+	    		getFiles(filePath[filePath.length-1], displayDivID);
+	    	}
+	    }).error(function(XHR, string, error){
+			alert("ERROR: "+string);
+			console.log(XHR);
+			console.log(string);
+			console.log(error);
+		});
+	}
 }
 
 function uploadFile(formID, displayDivID){
 	startLoading("Starting Upload...");
-	displayMsg("Starting Upload...");
+	//displayMsg("Starting Upload...");
 	
 	//Find the current folder directory
 	var folderID = filePath[filePath.length-1];
@@ -29,21 +64,21 @@ function uploadFile(formID, displayDivID){
 	$("#gdriveAuth").val(accessToken);
 	
 	function errorHandler(XHR, msg, errorMsg){
-		displayMsg("ERROR: "+errorMsg);
+		alert("ERROR: "+errorMsg);
 	}
 	function progressHandlingFunction(e){
 	    if(e.lengthComputable){
 	    	if(Math.round((e.loaded / e.total)*100) == 100){
-	    		displayMsg("Sending To Google Drive...");
+	    		//displayMsg("Sending To Google Drive...");
 	    	}else{
 	    		var loadAmount = Math.round((e.loaded / e.total)*100);
 	    		updateLoadingProgress(loadAmount, loadAmount+"% uploaded", false);
-	    		displayMsg("Progress = "+loadAmount+"%");
+	    		//displayMsg("Progress = "+loadAmount+"%");
 	    	}
 	    }
 	}
 	function successHandler(msg){
-		displayMsg("Upload of file "+msg+" complete.");
+		//displayMsg("Upload of file "+msg+" complete.");
 		
     	//Remove the hidden form items for security reasons
     	$("#data_folderID").remove();
@@ -77,12 +112,12 @@ function uploadFile(formID, displayDivID){
 
 function getFiles(folderID, displayDivID){
 	startLoading("Getting Folder");
-	displayMsg("Getting folder "+folderID);
+	//displayMsg("Getting folder "+folderID);
 	if(accessToken == ""){
 		$("#"+displayDivID).html("No Token. <a href='requests/login.php'>Please Log In</a>");
 		return false;
 	}
-	updateLoadingProgress(50, "Asking Google");
+	updateLoadingProgress(50, "Asking Google For Files");
 	$.ajax({
 		url:"requests/getFiles.php",
 		type:"POST",
@@ -92,7 +127,7 @@ function getFiles(folderID, displayDivID){
 		try{
 			files = eval(result);
 			console.log(files);
-			displayMsg("Files Retrieved");
+			//displayMsg("Files Retrieved");
 			displayFiles(displayDivID);
 			stopLoading();
 		}catch(e){
@@ -100,11 +135,11 @@ function getFiles(folderID, displayDivID){
 				$("#"+displayDivID).html("");
 				$("#"+displayDivID).html("Token Has Expired<br />"+accessToken);
 			}else{
-				displayMsg("ERROR: "+result);
+				alert("ERROR: "+result);
 			}
 		}
 	}).error(function(XHR, string, error){
-		displayMsg("ERROR");
+		alert("ERROR: "+string);
 		console.log(XHR);
 		console.log(string);
 		console.log(error);
@@ -164,10 +199,18 @@ function displayFiles(displayDivID){
 		html += "<a class='gdrive_folder' id='"+gdrive_folders[i].id+"'>"+gdrive_folders[i].title+"</a><br />";
 	}
 	for(i=0; i!=gdrive_files.length; i++){
+		
+		if(gdrive_files[i].alternateLink){
+			html += "<a href='"+gdrive_files[i].alternateLink+"' target='blank'>Open</a> ";
+		}
+		
+		html += "<a href='"+gdrive_files[i].id+"' class='deleteBt'>Delete</a>";
+		
 		html += "<img src='"+gdrive_files[i].iconLink+"'>";
 		html += gdrive_files[i].title+"<br />";
 	}
 	
 	$("#"+displayDivID).html(html);
 	linkFolders(displayDivID);
+	linkDeletes(displayDivID);
 }
