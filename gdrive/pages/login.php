@@ -2,6 +2,7 @@
 
 
 include("../gdrive.php");
+include("../database.php");
 
 //After authentication google will direct back to this page and send the GET variable for that user.
 if (isset($_GET['code'])) {
@@ -9,7 +10,9 @@ if (isset($_GET['code'])) {
 	$client->setAccessType("offline");
 	$client->authenticate($_GET['code']);
 	
-	$_SESSION['access_token'] = $client->getAccessToken(); //Need to save this access token
+	$_SESSION['access_token'] = $client->getAccessToken(); //Save as session for easy access
+	mysql_query("UPDATE cgt456_final SET gID = '".$client->getAccessToken()."' WHERE fbID = '".$_SESSION['fbID']."'"); //Save to DB for permanent access
+	
 	$redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 	//header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
 	header('Locaiton:../index.php');

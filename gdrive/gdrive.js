@@ -10,6 +10,7 @@ function displayMsg(string){
 }
 
 function uploadFile(formID, displayDivID){
+	startLoading("Starting Upload...");
 	displayMsg("Starting Upload...");
 	
 	//Find the current folder directory
@@ -35,7 +36,9 @@ function uploadFile(formID, displayDivID){
 	    	if(Math.round((e.loaded / e.total)*100) == 100){
 	    		displayMsg("Sending To Google Drive...");
 	    	}else{
-	    		displayMsg("Progress = "+Math.round((e.loaded / e.total)*100)+"%");
+	    		var loadAmount = Math.round((e.loaded / e.total)*100);
+	    		updateLoadingProgress(loadAmount, loadAmount+"% uploaded", false);
+	    		displayMsg("Progress = "+loadAmount+"%");
 	    	}
 	    }
 	}
@@ -49,7 +52,6 @@ function uploadFile(formID, displayDivID){
     	//Refresh the files list
     	getFiles(filePath[filePath.length-1], displayDivID);
 	}
-
 	var formData = new FormData($('#'+formID)[0]);
     $.ajax({
         url: 'requests/uploadFile.php',  //Server script to process data
@@ -74,21 +76,25 @@ function uploadFile(formID, displayDivID){
 }
 
 function getFiles(folderID, displayDivID){
+	startLoading("Getting Folder");
 	displayMsg("Getting folder "+folderID);
 	if(accessToken == ""){
 		$("#"+displayDivID).html("No Token. <a href='requests/login.php'>Please Log In</a>");
 		return false;
 	}
+	updateLoadingProgress(50, "Asking Google");
 	$.ajax({
 		url:"requests/getFiles.php",
 		type:"POST",
 		data:{access_token:accessToken, folderID:folderID}
 	}).done(function(result){
+		updateLoadingProgress(70, "Rendering Results");
 		try{
 			files = eval(result);
 			console.log(files);
 			displayMsg("Files Retrieved");
 			displayFiles(displayDivID);
+			stopLoading();
 		}catch(e){
 			if(result.indexOf("token has expired") != -1){
 				$("#"+displayDivID).html("");

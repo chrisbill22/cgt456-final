@@ -2,14 +2,16 @@
 
 
 function startGdrive($subdirToGdrive){
+	include("database.php");
+	
 	include_once $subdirToGdrive."sdk/examples/templates/base.php";
 	set_include_path($subdirToGdrive."sdk/src/" . PATH_SEPARATOR . get_include_path());
 	require_once 'Google/Client.php';
 	require_once 'Google/Service/Drive.php';
 	
-	$client_id = "296417278308-n0m0gh34tb6pklepdrmkbgdjjcft7ib9.apps.googleusercontent.com";
-	$client_secret = "6fMR2Jltu_uQLeeJxq2IPuRI";
-	$redirect_uri = "http://cgtweb1.tech.purdue.edu/456/cgt456web1a/Project3/requests/login.php"; // This must be the same as the Google Drive API Open URL
+	$client_id = "296417278308-i0htc2qfmng2i06ee31iqlq9l9ru045s.apps.googleusercontent.com";
+	$client_secret = "5xGBi-Ta3CaoP6ZJbaRODw2e";
+	$redirect_uri = "http://web.ics.purdue.edu/~bill0/pages/login.php"; // This must be the same as the Google Drive API Open URL
 	
 	//Setup the google login client
 	$client = new Google_Client();
@@ -25,6 +27,12 @@ function startGdrive($subdirToGdrive){
 	$client->addScope("https://www.googleapis.com/auth/drive.apps.readonly");
 	$client->addScope("https://www.googleapis.com/auth/drive.metadata.readonly");
 	$client->addScope("https://www.googleapis.com/auth/drive.readonly");
+	
+	if(empty($_SESSION['access_token'])){
+		$result = mysql_query("SELECT gID FROM cgt456_final WHERE fbID = '".$_SESSION['fbID']."'");
+		$row = mysql_fetch_array($result);
+		$_SESSION['access_token'] = $row['gid'];
+	}
 	
 	return $client;
 }
@@ -114,16 +122,6 @@ function uploadFile($service, $title, $description, $parentId, $mimeType, $filep
   }
 }
 
-?>
-
-
-
-
-<?php 
 if(isset($authUrl)){ ?>
-	<a href="<?php echo $authUrl; ?>">You must connect an account first.</a>
+	<!--<a href="<?php echo $authUrl; ?>">You must connect an account first.</a>-->
 <?php } ?>
-
-
-
-
