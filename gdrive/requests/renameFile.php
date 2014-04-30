@@ -1,6 +1,7 @@
 <?php
 //POST - access_token
-//POST - folderID
+//POST - fileID
+//POST - newFileName
 
 $subdir = "../";
 
@@ -12,7 +13,7 @@ $client = authenticate($client, $_POST['access_token']);
 
 $service = new Google_Service_Drive($client);
 
-$allFiles = retrieveFiles($service, $_POST['folderID']);
-echo json_encode($allFiles);
+$updateFile = renameFile($service, $_POST['fileID'], $_POST['newFileName']);
+echo $updateFile->title;
 
 ?>

@@ -7,10 +7,13 @@
 		<title>New Web Project</title>
 		
 		<link href="loader/loader.css" type="text/css" rel="stylesheet" />
+		<link href="jqueryUI/css/flick/jquery-ui-1.10.4.custom.min.css" type="text/css" rel="stylesheet" />
 		
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script type="text/javascript" src="gdrive.js"></script>
 		<script type="text/javascript" src="loader/loader.js"></script>
+		<script type="text/javascript" src="jqueryUI/js/jquery-ui-1.10.4.custom.min.js"></script>
+		
 		<script type="text/javascript">
 			var accessToken = '<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>';
 			var accessObj = eval(<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>);
@@ -39,6 +42,7 @@
 		<!--
 		<div id="message" style="z-index:101; position:fixed; bottom:0px; left:0px; right:0px; width:100%; padding:10px; text-align: center; background-color: #333; color:#DDD;"></div>
 		-->
+		<div id="renamePopup" style="display: none;">New Name: <br /><input type='text' /></div>
 	</body>
 </html>
 

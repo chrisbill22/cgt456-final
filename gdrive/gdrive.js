@@ -14,6 +14,41 @@ $(document).ready(function(){
 	console.log(string);
 }*/
 
+function linkRename(displayDivID){
+	$(".renameBt").click(function(event){
+		event.preventDefault();
+		var ID = $(this).attr("href");
+		$( "#renamePopup" ).dialog({
+		    resizable: false,
+		    modal: true,
+		    title:"New Name",
+		    buttons: {
+		        Ok: function() {
+		        	//alert(ID+", "+$("#renamePopup input").val()+", "+displayDivID);
+		        	renameFile(ID, $("#renamePopup input").val(), displayDivID);
+		        	$( this ).dialog( "close" );
+		        }
+		    }
+	    });
+	});
+	
+}
+function renameFile(fileID, newName, displayDivID){
+	startLoading("Renaming File");
+	$.ajax({
+	        url: 'requests/renameFile.php',  //Server script to process data
+	        type: 'POST',
+	        data: {access_token:accessToken, fileID:fileID, newFileName:newName},
+	    }).done(function(msg) {
+    		getFiles(filePath[filePath.length-1], displayDivID);
+	    }).error(function(XHR, string, error){
+			alert("ERROR: "+string);
+			console.log(XHR);
+			console.log(string);
+			console.log(error);
+		});
+}
+
 function linkDeletes(displayDivID){
 	$("a.deleteBt").click(function(event){
 		event.preventDefault();
@@ -115,6 +150,7 @@ function getFiles(folderID, displayDivID){
 	//displayMsg("Getting folder "+folderID);
 	if(accessToken == ""){
 		$("#"+displayDivID).html("No Token. <a href='requests/login.php'>Please Log In</a>");
+		stopLoading();
 		return false;
 	}
 	updateLoadingProgress(50, "Asking Google For Files");
@@ -204,7 +240,9 @@ function displayFiles(displayDivID){
 			html += "<a href='"+gdrive_files[i].alternateLink+"' target='blank'>Open</a> ";
 		}
 		
-		html += "<a href='"+gdrive_files[i].id+"' class='deleteBt'>Delete</a>";
+		html += "<a href='"+gdrive_files[i].id+"' class='deleteBt'>Delete</a> ";
+		
+		html += "<a href='"+gdrive_files[i].id+"' class='renameBt'>Rename</a> ";
 		
 		html += "<img src='"+gdrive_files[i].iconLink+"'>";
 		html += gdrive_files[i].title+"<br />";
@@ -213,4 +251,5 @@ function displayFiles(displayDivID){
 	$("#"+displayDivID).html(html);
 	linkFolders(displayDivID);
 	linkDeletes(displayDivID);
+	linkRename(displayDivID);
 }

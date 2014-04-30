@@ -24,6 +24,7 @@ function startGdrive($subdirToGdrive){
 	$client->addScope("https://www.googleapis.com/auth/drive");
 	$client->addScope("https://www.googleapis.com/auth/drive.file");
 	$client->addScope("https://www.googleapis.com/auth/drive.appdata");
+	$client->addScope("https://www.googleapis.com/auth/drive.scripts");
 	$client->addScope("https://www.googleapis.com/auth/drive.apps.readonly");
 	$client->addScope("https://www.googleapis.com/auth/drive.metadata.readonly");
 	$client->addScope("https://www.googleapis.com/auth/drive.readonly");
@@ -126,6 +127,21 @@ function deleteFile($service, $fileId){
 	try{
 		$service->files->delete($fileId);
 		return "True";
+	}catch (Exception $e){
+		print "An error occurred: " . $e->getMessage();
+	}
+}
+
+function renameFile($service, $fileId, $newTitle){
+	try{
+		$file = new Google_Service_Drive_DriveFile();
+	    $file->setTitle($newTitle);
+	
+	    $updatedFile = $service->files->patch($fileId, $file, array(
+	      'fields' => 'title'
+	    ));
+	
+	    return $updatedFile;
 	}catch (Exception $e){
 		print "An error occurred: " . $e->getMessage();
 	}
