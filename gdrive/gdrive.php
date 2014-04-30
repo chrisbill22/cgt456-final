@@ -132,6 +132,15 @@ function deleteFile($service, $fileId){
 	}
 }
 
+function trashFile($service, $fileId){
+	try{
+		$service->files->trash($fileId);
+		return "True";
+	}catch (Exception $e){
+		print "An error occurred: " . $e->getMessage();
+	}
+}
+
 function renameFile($service, $fileId, $newTitle){
 	try{
 		$file = new Google_Service_Drive_DriveFile();

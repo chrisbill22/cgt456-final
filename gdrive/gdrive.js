@@ -2,6 +2,8 @@ var files = "";
 var filePath = Array("root");
 var accessToken;
 var accessObj;
+var gdrive_folders;
+var gdrive_files;
 
 $(document).ready(function(){
 	
@@ -13,6 +15,10 @@ $(document).ready(function(){
 	$("#message").html(string);
 	console.log(string);
 }*/
+
+
+
+
 
 function linkRename(displayDivID){
 	$(".renameBt").click(function(event){
@@ -64,7 +70,7 @@ function deleteFile(fileID, displayDivID){
 	        type: 'POST',
 	        data: {access_token:accessToken, fileID:fileID},
 	    }).done(function(msg) {
-	    	if(msg != "True"){
+	    	if(msg.indexOf("True") == -1){
 	    		alert("ERROR: "+msg);
 	    		stopLoading();
 	    	}else{
@@ -197,8 +203,8 @@ function linkFolders(displayDivID){
 function displayFiles(displayDivID){
 	$("#"+displayDivID).html("");
 	var html = "<h1>Files</h1>";
-	var gdrive_folders = Array();
-	var gdrive_files = Array();
+	gdrive_folders = Array();
+	gdrive_files = Array();
 	
 	for(i=0; i!=files.length; i++){
 		if(files[i].mimeType == "application/vnd.google-apps.folder"){
@@ -240,9 +246,15 @@ function displayFiles(displayDivID){
 			html += "<a href='"+gdrive_files[i].alternateLink+"' target='blank'>Open</a> ";
 		}
 		
+		if(gdrive_files[i].webContentLink){
+			html += "<a href='"+gdrive_files[i].webContentLink+"' target='blank'>Download</a> ";
+		}
+		
 		html += "<a href='"+gdrive_files[i].id+"' class='deleteBt'>Delete</a> ";
 		
 		html += "<a href='"+gdrive_files[i].id+"' class='renameBt'>Rename</a> ";
+		
+		
 		
 		html += "<img src='"+gdrive_files[i].iconLink+"'>";
 		html += gdrive_files[i].title+"<br />";
