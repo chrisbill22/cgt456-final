@@ -2,7 +2,7 @@
 
 require_once __DIR__.'/../lib/Dropbox/strict.php';
 
-$appInfoFile = __DIR__."/web-file-browser.app";
+$appInfoFile = __DIR__."/authorization.json";
 
 // NOTE: You should be using Composer's global autoloader.  But just so these examples
 // work for people who don't have Composer, we'll use the library's "autoload.php".
@@ -63,7 +63,7 @@ else if ($requestPath === "/upload") {
 
     if (!empty($_FILES['file']['error'])) {
         echo renderHtmlPage("Error", "Error ".$_FILES['file']['error']." uploading file.  See <a href='http://php.net/manual/en/features.file-upload.errors.php'>the docs</a> for details");
-        exit;
+		exit;
     }
 
     $dbxClient = getClient();
@@ -78,6 +78,7 @@ else if ($requestPath === "/upload") {
     fclose($fp);
     $str = print_r($result, TRUE);
     echo renderHtmlPage("Uploading File", "Result: <pre>$str</pre>");
+	//header("Location: web-file-browser.php");
 }
 else if ($requestPath === "/dropbox-auth-start") {
     $authorizeUrl = getWebAuth()->start();
@@ -263,26 +264,13 @@ function getPath($relative_path)
 
 function init()
 {
-    global $argv;
-
-    // If we were run as a command-line script, launch the PHP built-in web server.
-    if (PHP_SAPI === 'cli') {
-        launchBuiltInWebServer($argv);
-        assert(false);
-    }
-
-    if (PHP_SAPI === 'cli-server') {
-        // For when we're running under PHP's built-in web server, do the routing here.
-        return $_SERVER['SCRIPT_NAME'];
-    }
-    else {
         // For when we're running under CGI or mod_php.
         if (isset($_SERVER['PATH_INFO'])) {
             return $_SERVER['PATH_INFO'];
         } else {
             return "/";
         }
-    }
+    
 }
 
 function launchBuiltInWebServer($argv)

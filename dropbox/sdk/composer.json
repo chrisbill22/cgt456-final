@@ -26,4 +26,8 @@
             "comment": "Workaround for bug in ApiGen mainline."
         }
     ]
+
+    "require": {
+        "dropbox/dropbox-sdk": "1.1.*"
+    }
 }
