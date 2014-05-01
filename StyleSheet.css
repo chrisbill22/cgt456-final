@@ -49,7 +49,7 @@
    text-decoration: none;
    vertical-align: middle;
 }
-#test{
+#FileOptions{
 	float:right;
 }
 a {
@@ -60,9 +60,16 @@ a:hover {
 	background:#369;
 	text-decoration:none;
 }
+.CloudAccount
+{
+	float:left;
+	padding-top: 8px;
+}
+h3{
+	padding:6px
+}
 h1, h2, h3 {
 	margin:.8em 0 .2em 0;
-	padding:0;
 }
 p {
 	margin:.4em 0 .8em 0;
@@ -161,6 +168,9 @@ p {
 	padding:0 0 1em 0;
 	overflow:hidden;
 }
+.col ul{
+	margin-right:20px;
+}
 .col1 ul li {
 	list-style:none;
 	padding-top:6px;
@@ -183,7 +193,7 @@ hr {
 	color:#898989;
 	background-color:#898989;
 	height: 1px;
-	margin-bottom:10px;
+	margin-bottom:3px;
 	margin-top:20px;
 }
 /* 2 Column (left menu) settings */
@@ -191,24 +201,23 @@ hr {
 	background:#fff;	
 }
 .menu .colalign {
-	right:75%;	
+	right:0;	
 		
 }
 .menu .col1 {
-	width:71%;			
-	left:99%;
+	width:75%;			
+	left:21%;
     min-height:550px;
     padding-top: 20px;			
 }
 .menu .col2 {
 	width:19%;	
-    padding-left:30px;		
-	left:4%;	
+    padding-left:13px;		
+	left:-75%;	
     background:#cccccc;	
     min-height:550px;
     padding-top: 20px;	
 }
-
 /* Footer styles */
 #footer {
 	clear:both;
