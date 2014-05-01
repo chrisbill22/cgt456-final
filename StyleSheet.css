@@ -23,12 +23,21 @@
 	position:absolute;
 	left:320px;
 }
+#header .nav-AddCloudDevice:hover{
+	opacity:0.8;
+	filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
 #header .nav-AddFolder{
 	width:56px;
 	height:56px;
 	padding-top:40px;
 	position:absolute;
 	left:450px;
+}
+#header .nav-AddFolder:hover{
+	opacity:0.8;
+	filter:alpha(opacity=80); /* For IE8 and earlier */
 }
 .logoutButton {
    width:100px;
@@ -51,6 +60,11 @@
 }
 #FileOptions{
 	float:right;
+}
+#FileOptions img:hover{
+opacity:0.5;
+filter:alpha(opacity=50); /* For IE8 and earlier */
+}
 }
 a {
 	color:#369;
