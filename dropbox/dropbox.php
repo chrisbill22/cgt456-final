@@ -7,9 +7,9 @@ $fileMetadata = $dbxClient->getFile("/requests/working-draft.txt", $f);
 fclose($f);
 print_r($fileMetadata);
 */
-
 include("requests/authorize.php");
 //include("requests/downloadFile.php");
+include("requests/getFile.php");
 
 ?>
 
@@ -24,10 +24,22 @@ include("requests/authorize.php");
 <a href-"downloadFiles.php"><button>Get Files</button></a>
 <a href="requests/logout.php"><button>Logout</button></a>
 <a href="requests/authorize.php"><button>Login</button></a>
-<form action="requests/uploadFile.php" method="post" enctype="multipart/form-data">
+<form action="fsfd" method="post">
   <input type="file" id="uploadFile" name="dbFile" />
   <input type="submit" value="Upload">
   <input name="folder" type="hidden" value="$path"/>
 </form>
+<form action="requests/uploadFile.php" method="post">
+  <input type="text" />
+  <input type="submit" value="Upload">
+</form>
+<?php 
+if ($entry['is_dir']) {
+	echo renderFolder($entry);
+} else {
+	echo renderFile($entry);
+} 
+?>
+
 </body>
 </html>
