@@ -44,7 +44,7 @@ function updateLoadingProgress(number, message, animate){
 
 function renderLoader(){
 	if(!$("#loader").length){
-		$("body").append("<div id='loader'><div id='loader_progress'></div><div id='loaderMessage'></div></div>");
+		$("body").append("<div id='loader'><div id='loader_image'><img src='images/LoadingIcon.gif' alt='Loading animation' /><span id='loaderMessage'></span></div><div id='loader_progress'></div></div>");
 	}
 }
 function destroyLoader(){
