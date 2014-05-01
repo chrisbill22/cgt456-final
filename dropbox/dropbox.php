@@ -10,7 +10,6 @@ print_r($fileMetadata);
 include("requests/authorize.php");
 //include("requests/downloadFile.php");
 include("requests/getFile.php");
-
 ?>
 
 

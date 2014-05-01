@@ -116,6 +116,7 @@ function getClient()
     $accessToken = $_SESSION['access-token'];
     return new dbx\Client($accessToken, $clientIdentifier, $userLocale, $appInfo->getHost());
 }
+
 function getWebAuth()
 {
     list($appInfo, $clientIdentifier, $userLocale) = getAppConfig();
@@ -123,6 +124,7 @@ function getWebAuth()
     $csrfTokenStore = new dbx\ArrayEntryStore($_SESSION, 'dropbox-auth-csrf-token');
     return new dbx\WebAuth($appInfo, $clientIdentifier, $redirectUri, $csrfTokenStore, $userLocale);
 }
+
 function getUrl($relative_path)
 {
     if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
@@ -143,7 +145,6 @@ function getPath($relative_path)
         return $_SERVER["SCRIPT_NAME"]."/".$relative_path;
     }
 }
-
 
 
 ?>
