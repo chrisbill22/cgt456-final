@@ -16,8 +16,7 @@
 	<script type="text/javascript">
 		var accessToken = '<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>';
 		var accessObj = eval(<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>);
-		google_folderDiv = "#googleFolders";
-		google_fileDiv = "#googleFiles";
+		renderDiv = "googleFiles";
 		gDriveSubdir = "gdrive/";
 	</script>
     
@@ -76,15 +75,14 @@
                 <br />
                 <img src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
                 <h3>jtheuerl92</h3>
-                <div id="googleFolders">
-	                <ul>
-	 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
-	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
-	                </ul>
-                </div>
+                <ul>
+ 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
+                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
+                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
+                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
+                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
+                </ul>
+                
                 <!-- Column 2 end -->
             </div>
         </div>
