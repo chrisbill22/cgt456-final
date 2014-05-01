@@ -145,22 +145,29 @@ p {
 }
 .col1 ul li {
 	list-style:none;
-	margin:0;
-	padding:0;
+	padding-top:6px;
     font-size:small; 
+    margin-bottom:2px;
 }
 .col2 ul li {
 	list-style:none;
-	margin:0;
-	padding:0;
+	padding-top:7px;
     font-size:medium; 
+    margin-bottom:2px;
 
 }
-.col2 img{
-	outline:2px black;
+.col1 ul li img,
+.col2 ul li img{
+	margin-bottom:-9px; /* aligns folders in list with text*/
 }
 
-
+hr {
+	color:#898989;
+	background-color:#898989;
+	height: 1px;
+	margin-bottom:10px;
+	margin-top:20px;
+}
 /* 2 Column (left menu) settings */
 .menu {
 	background:#fff;	
