@@ -21,7 +21,6 @@ include("requests/getFile.php");
     <title>DB</title>
 </head>
 <body>
-<a href-"downloadFiles.php"><button>Get Files</button></a>
 <a href="requests/logout.php"><button>Logout</button></a>
 <a href="requests/authorize.php"><button>Login</button></a>
 <form action="fsfd" method="post">
