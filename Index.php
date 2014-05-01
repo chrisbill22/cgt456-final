@@ -16,6 +16,8 @@
 	<script type="text/javascript">
 		var accessToken = '<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>';
 		var accessObj = eval(<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>);
+		renderDiv = "googleFiles";
+		gDriveSubdir = "gdrive/";
 	</script>
     
 </head>
