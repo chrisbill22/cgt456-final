@@ -6,13 +6,16 @@ var accessObj;
 var gdrive_folders;
 var gdrive_files;
 var moveID;
+var renderDiv;
+var gDriveSubdir = "";
+
 
 $(document).ready(function(){
 	$("#getFiles").click(function(){
-		getFiles('', "results");
+		getFiles('', renderDiv);
 	});
 	$("#uploadFileBtn").click(function(){
-		uploadFile("uploadFileForm", "results");
+		uploadFile("uploadFileForm", renderDiv);
 	});
 });
 
@@ -67,7 +70,7 @@ function moveFile(fileID, newParent, oldParent, displayDivID){
 	console.log("NewFolder = "+newParent);
 	console.log("OldFoler = "+oldParent);
 	$.ajax({
-        url: 'requests/moveFile.php',  //Server script to process data
+        url: gDriveSubdir+'requests/moveFile.php',  //Server script to process data
         type: 'POST',
         data: {access_token:accessToken, fileID:fileID, oldParent:oldParent, newParent:newParent},
     }).done(function(msg) {
@@ -102,7 +105,7 @@ function linkRename(displayDivID){
 function renameFile(fileID, newName, displayDivID){
 	startLoading("Renaming File");
 	$.ajax({
-        url: 'requests/renameFile.php',  //Server script to process data
+        url: gDriveSubdir+'requests/renameFile.php',  //Server script to process data
         type: 'POST',
         data: {access_token:accessToken, fileID:fileID, newFileName:newName},
     }).done(function(msg) {
@@ -126,7 +129,7 @@ function deleteFile(fileID, displayDivID){
 	if(confirmResult){
 		startLoading("Deleting File");
 		$.ajax({
-	        url: 'requests/deleteFile.php',  //Server script to process data
+	        url: gDriveSubdir+'requests/deleteFile.php',  //Server script to process data
 	        type: 'POST',
 	        data: {access_token:accessToken, fileID:fileID},
 	    }).done(function(msg) {
@@ -190,7 +193,7 @@ function uploadFile(formID, displayDivID){
 	}
 	var formData = new FormData($('#'+formID)[0]);
     $.ajax({
-        url: 'requests/uploadFile.php',  //Server script to process data
+        url: gDriveSubdir+'requests/uploadFile.php',  //Server script to process data
         type: 'POST',
         xhr: function() {  // Custom XMLHttpRequest
             var myXhr = $.ajaxSettings.xhr();
@@ -221,7 +224,7 @@ function getFiles(folderID, displayDivID, foldersOnly){
 	}
 	updateLoadingProgress(50, "Asking Google For Files");
 	$.ajax({
-		url:"requests/getFiles.php",
+		url:gDriveSubdir+"requests/getFiles.php",
 		type:"POST",
 		data:{access_token:accessToken, folderID:folderID}
 	}).done(function(result){
