@@ -1,10 +1,11 @@
 <?php
 $body;
+/*
 if ($dbxClient === false) {
 	header("Location: ".getPath("dropbox-auth-start"));
 	exit;
 }
-
+*/
 $path = "/";
 if (isset($_GET['path'])) $path = $_GET['path'];
 

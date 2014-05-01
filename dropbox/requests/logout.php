@@ -1,5 +1,5 @@
 <?php
-
-$_SESSION['access-token'] = '';
-
+session_start();
+session_destroy();
+header("Locaiton: ../dropbox.php");
 ?>

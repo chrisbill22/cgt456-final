@@ -33,7 +33,7 @@ if ($requestPath === "/dropbox-auth-finish") {
     }
     catch (dbx\WebAuthException_BadState $ex) {
         // Auth session expired.  Restart the auth process.
-        header("Location: ".getPath("dropbox-auth-start"));
+        //header("Location: ".getPath("dropbox-auth-start"));
         exit;
     }
     catch (dbx\WebAuthException_Csrf $ex) {
@@ -134,6 +134,7 @@ function getUrl($relative_path)
     $path = getPath($relative_path);
     return $scheme."://".$host.$path;
 }
+
 function getPath($relative_path)
 {
     if (PHP_SAPI === 'cli-server') {
