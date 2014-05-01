@@ -43,6 +43,12 @@
 		<div id="message" style="z-index:101; position:fixed; bottom:0px; left:0px; right:0px; width:100%; padding:10px; text-align: center; background-color: #333; color:#DDD;"></div>
 		-->
 		<div id="renamePopup" style="display: none;">New Name: <br /><input type='text' /></div>
+		<div id="movePopup" style="display: none;">
+			<small>Choose which folder to move your document into</small>
+			<div class="breadcrumbs"></div>
+			<div class="folders"></div>
+			
+		</div>
 	</body>
 </html>
 

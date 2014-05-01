@@ -156,6 +156,29 @@ function renameFile($service, $fileId, $newTitle){
 	}
 }
 
+function moveFile($service, $fileId, $oldParent, $newParent){
+	
+		//remove old parent
+		$service->parents->delete($fileId, $oldParent);
+		//add new parent
+		$newParentClass = new Google_Service_Drive_ParentReference();
+		$newParentClass->setId($newParent);
+	try{
+		$service->parents->insert($fileId, $newParentClass);
+		
+		/*$file = new Google_Service_Drive_DriveFile();
+	    $file->setParents($newParentClass);
+	
+	    $updatedFile = $service->files->patch($fileId, $file, array(
+	      'fields' => 'parents'
+	    ));*/
+		
+		return "true";
+	}catch(Exception $e){
+		print "An error occurred: " . $e->getMessage();
+	}
+}
+
 if(isset($authUrl)){ ?>
 	<!--<a href="<?php echo $authUrl; ?>">You must connect an account first.</a>-->
 <?php } ?>
