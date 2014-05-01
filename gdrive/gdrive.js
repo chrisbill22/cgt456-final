@@ -8,7 +8,12 @@ var gdrive_files;
 var moveID;
 
 $(document).ready(function(){
-	
+	$("#getFiles").click(function(){
+		getFiles('', "results");
+	});
+	$("#uploadFileBtn").click(function(){
+		uploadFile("uploadFileForm", "results");
+	});
 });
 
 

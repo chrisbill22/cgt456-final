@@ -17,14 +17,6 @@
 		<script type="text/javascript">
 			var accessToken = '<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>';
 			var accessObj = eval(<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>);
-			$(document).ready(function(){
-				$("#getFiles").click(function(){
-					getFiles('', "results");
-				});
-				$("#uploadFileBtn").click(function(){
-					uploadFile("uploadFileForm", "results");
-				});
-			});
 		</script>
 	</head>
 	<body>
