@@ -38,10 +38,13 @@
                 <div id="googleFiles">
 	                <ul>
 	                	<hr>
-	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
-	                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
-	                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document" />
-	                    <img src="images/additionalOptions.png" width="25" border="0" height="25" alt="Additional Options" />
+	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess
+		                    <div id="FileOptions">
+		                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
+		                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
+		                    <img src="images/additionalOptions.png" width="25" border="0" height="25" alt="Additional Options" />
+		      				</div>
+	                    </li>
 	                    <hr>
 	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
 	                    <hr>
@@ -71,11 +74,11 @@
                 <img src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
                 <h3>jtheuerl92</h3>
                 <ul>
- 					<li><img src="images/WhiteFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
-                    <li><img src="images/WhiteFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
-                    <li><img src="images/WhiteFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
-                    <li><img src="images/WhiteFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
-                    <li><img src="images/WhiteFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
+ 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
+                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
+                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
+                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
+                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
                 </ul>
                 
                 <!-- Column 2 end -->
