@@ -33,6 +33,11 @@ if ($requestPath === "/") {
         echo renderFile($entry);
     }
 }
+
+///////////////////////
+// download
+///////////////////////
+
 else if ($requestPath == "/download") {
     $dbxClient = getClient();
 
@@ -55,6 +60,11 @@ else if ($requestPath == "/download") {
     fpassthru($fd);
     fclose($fd);
 }
+
+///////////////////////
+// upload
+///////////////////////
+
 else if ($requestPath === "/upload") {
     if (empty($_FILES['file']['name'])) {
         echo renderHtmlPage("Error", "Please choose a file to upload");
@@ -78,7 +88,6 @@ else if ($requestPath === "/upload") {
     fclose($fp);
     $str = print_r($result, TRUE);
     echo renderHtmlPage("Uploading File", "Result: <pre>$str</pre>");
-	//header("Location: web-file-browser.php");
 }
 else if ($requestPath === "/dropbox-auth-start") {
     $authorizeUrl = getWebAuth()->start();

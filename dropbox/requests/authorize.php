@@ -39,4 +39,34 @@ function getClient()
     $accessToken = $_SESSION['access-token'];
     return new dbx\Client($accessToken, $clientIdentifier, $userLocale, $appInfo->getHost());
 }
+
+function getWebAuth()
+{
+    list($appInfo, $clientIdentifier, $userLocale) = getAppConfig();
+    $redirectUri = getUrl("dropbox-auth-finish");
+    $csrfTokenStore = new dbx\ArrayEntryStore($_SESSION, 'dropbox-auth-csrf-token');
+    return new dbx\WebAuth($appInfo, $clientIdentifier, $redirectUri, $csrfTokenStore, $userLocale);
+}
+
+function getUrl($relative_path)
+{
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+        $scheme = "https";
+    } else {
+        $scheme = "http";
+    }
+    $host = $_SERVER['HTTP_HOST'];
+    $path = getPath($relative_path);
+    return $scheme."://".$host.$path;
+}
+
+function getPath($relative_path)
+{
+    if (PHP_SAPI === 'cli-server') {
+        return "/".$relative_path;
+    } else {
+        return $_SERVER["SCRIPT_NAME"]."/".$relative_path;
+    }
+}
+
 ?>

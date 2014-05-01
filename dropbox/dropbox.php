@@ -9,6 +9,7 @@ print_r($fileMetadata);
 */
 
 include("requests/authorize.php");
+//include("requests/downloadFile.php");
 
 ?>
 
@@ -20,12 +21,13 @@ include("requests/authorize.php");
     <title>DB</title>
 </head>
 <body>
-<button id="getFiles">Get Files</button>
+<a href-"downloadFiles.php"><button>Get Files</button></a>
 <a href="requests/logout.php"><button>Logout</button></a>
 <a href="requests/authorize.php"><button>Login</button></a>
-<form enctype="multipart/form-data" id="uploadFileForm" action="uploadFile.php" method="post">
-    <input type="file" id="uploadFile" name="gdriveFile" />
-    <input type='button' id="uploadFileBtn" value="Upload">
+<form action="requests/uploadFile.php" method="post" enctype="multipart/form-data">
+  <input type="file" id="uploadFile" name="dbFile" />
+  <input type="submit" value="Upload">
+  <input name="folder" type="hidden" value="$path"/>
 </form>
 </body>
 </html>
