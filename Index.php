@@ -35,7 +35,7 @@
             <div class="col1">
                 
                 <!-- Column 1 start -->
-                <img class="" src="images/googledrivelogo.png" width="45" border="0" height="39" alt="Google Drive Logo" />
+                <img class="CloudAccount" src="images/googledrivelogo.png" width="45" border="0" height="39" alt="Google Drive Logo" />
                 <h3>jtheuerl92</h3>
                 <div id="googleFiles">
 	                <ul>
@@ -70,10 +70,9 @@
             <div class="col2">
                 <!-- Column 2 start -->
 
-                <img src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
+                <img class="CloudAccount" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
                 <h3>jtheuerl</h3>
-                <br />
-                <img src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
+                <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
                 <h3>jtheuerl92</h3>
                 <ul>
  					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
