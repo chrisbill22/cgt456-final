@@ -9,7 +9,6 @@
     font-family:'Microsoft YaHei';
     font-family:sans-serif;
 }
-
 #header #logo{
     position:absolute;
     width:232px;
@@ -29,11 +28,24 @@
 	padding-left:450px;
 	padding-top:40px;
 }
-#header .nav-Upload{
-	width:70px;
-	height:54px;
-	padding-left:600px;
+.logoutButton {
+   width:100px;
+   height:40px;
+   	padding-left:450px;
 	padding-top:40px;
+   border-top: 1px solid #96d1f8;
+   background: #FFFFFF;
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: #000000;
+   text-decoration: none;
+   vertical-align: middle;
 }
 a {
 	color:#369;
@@ -186,7 +198,7 @@ hr {
 	width:19%;	
     padding-left:30px;		
 	left:4%;	
-    background:#b5b7b9;	
+    background:#cccccc;	
     min-height:550px;
     padding-top: 20px;	
 }
