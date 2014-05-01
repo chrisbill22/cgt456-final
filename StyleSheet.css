@@ -9,13 +9,43 @@
     font-family:'Microsoft YaHei';
     font-family:sans-serif;
 }
-
 #header #logo{
     position:absolute;
-    width:141px;
-    height:100px;
-    left:20px;
+    width:232px;
+    height:98px;
+    left:10px;
     margin-top:-1px;
+}
+#header .nav-AddCloudDevice{
+	width:70px;
+	height:54px;
+	padding-left:300px;
+	padding-top:40px;
+}
+#header .nav-AddFolder{
+	width:56px;
+	height:56px;
+	padding-left:450px;
+	padding-top:40px;
+}
+.logoutButton {
+   width:100px;
+   height:40px;
+   	padding-left:450px;
+	padding-top:40px;
+   border-top: 1px solid #96d1f8;
+   background: #FFFFFF;
+   padding: 5px 10px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: #000000;
+   text-decoration: none;
+   vertical-align: middle;
 }
 a {
 	color:#369;
@@ -33,7 +63,6 @@ p {
 	margin:.4em 0 .8em 0;
 	padding:0;
 }
-
 
 /* Header styles */
 #header {
@@ -69,6 +98,10 @@ p {
 	list-style:none;
 	margin:0;
 	padding:0;
+}
+#header ul li img{
+	width:10px;
+	height:10px;
 }
 #header ul li a {
 	display:block;
@@ -108,9 +141,8 @@ p {
 }
 
 /* common column settings */
-.colright,
-.colmid,
-.colleft {
+
+.colalign {
 	float:left;
 	width:100%;
 	position:relative;
@@ -123,26 +155,36 @@ p {
 	padding:0 0 1em 0;
 	overflow:hidden;
 }
-.col1 img,
-.col2 img{
-    float:left;
-    padding-right:20px;
-}
-.col1,
-.col2 ul li {
-	display:block;
+.col1 ul li {
 	list-style:none;
-	margin:0;
-	padding:0;
+	padding-top:6px;
+    font-size:small; 
+    margin-bottom:2px;
+}
+.col2 ul li {
+	list-style:none;
+	padding-top:7px;
     font-size:medium; 
+    margin-bottom:2px;
+
+}
+.col1 ul li img,
+.col2 ul li img{
+	margin-bottom:-9px; /* aligns folders in list with text*/
 }
 
-
+hr {
+	color:#898989;
+	background-color:#898989;
+	height: 1px;
+	margin-bottom:10px;
+	margin-top:20px;
+}
 /* 2 Column (left menu) settings */
 .menu {
 	background:#fff;	
 }
-.menu .colleft {
+.menu .colalign {
 	right:75%;	
 		
 }
@@ -156,7 +198,7 @@ p {
 	width:19%;	
     padding-left:30px;		
 	left:4%;	
-    background:#b5b7b9;	
+    background:#cccccc;	
     min-height:550px;
     padding-top: 20px;	
 }
