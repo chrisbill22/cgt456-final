@@ -6,13 +6,18 @@ var accessObj;
 var gdrive_folders;
 var gdrive_files;
 var moveID;
+var gDriveSubdir = "";
+
+var google_folderDiv = "";
+var google_fileDiv = "";
+
 
 $(document).ready(function(){
 	$("#getFiles").click(function(){
-		getFiles('', "results");
+		getFiles('');
 	});
 	$("#uploadFileBtn").click(function(){
-		uploadFile("uploadFileForm", "results");
+		uploadFile("uploadFileForm", renderDiv);
 	});
 });
 
@@ -62,17 +67,17 @@ function openMoveFile(folderID){
 		getFiles("root", "movePopup", true);
 	}
 }
-function moveFile(fileID, newParent, oldParent, displayDivID){
+function moveFile(fileID, newParent, oldParent){
 	console.log("FileID = "+fileID);
 	console.log("NewFolder = "+newParent);
 	console.log("OldFoler = "+oldParent);
 	$.ajax({
-        url: 'requests/moveFile.php',  //Server script to process data
+        url: gDriveSubdir+'requests/moveFile.php',  //Server script to process data
         type: 'POST',
         data: {access_token:accessToken, fileID:fileID, oldParent:oldParent, newParent:newParent},
     }).done(function(msg) {
     	console.log(msg);
-		//getFiles(filePath[filePath.length-1][1], displayDivID);
+		//getFiles(filePath[filePath.length-1][1]);
     }).error(function(XHR, string, error){
 		alert("ERROR: "+string);
 		console.log(XHR);
@@ -81,7 +86,7 @@ function moveFile(fileID, newParent, oldParent, displayDivID){
 	});
 }
 
-function linkRename(displayDivID){
+function linkRename(){
 	$(".renameBt").click(function(event){
 		event.preventDefault();
 		var ID = $(this).attr("href");
@@ -91,22 +96,22 @@ function linkRename(displayDivID){
 		    title:"New Name",
 		    buttons: {
 		        Ok: function() {
-		        	//alert(ID+", "+$("#renamePopup input").val()+", "+displayDivID);
-		        	renameFile(ID, $("#renamePopup input").val(), displayDivID);
+		        	//alert(ID+", "+$("#renamePopup input").val());
+		        	renameFile(ID, $("#renamePopup input").val());
 		        	$( this ).dialog( "close" );
 		        }
 		    }
 	    });
 	});
 }
-function renameFile(fileID, newName, displayDivID){
+function renameFile(fileID, newName){
 	startLoading("Renaming File");
 	$.ajax({
-        url: 'requests/renameFile.php',  //Server script to process data
+        url: gDriveSubdir+'requests/renameFile.php',  //Server script to process data
         type: 'POST',
         data: {access_token:accessToken, fileID:fileID, newFileName:newName},
     }).done(function(msg) {
-		getFiles(filePath[filePath.length-1][1], displayDivID);
+		getFiles(filePath[filePath.length-1][1]);
     }).error(function(XHR, string, error){
 		alert("ERROR: "+string);
 		console.log(XHR);
@@ -115,18 +120,18 @@ function renameFile(fileID, newName, displayDivID){
 	});
 }
 
-function linkDeletes(displayDivID){
+function linkDeletes(){
 	$("a.deleteBt").click(function(event){
 		event.preventDefault();
-		deleteFile($(this).attr("href"), displayDivID);
+		deleteFile($(this).attr("href"));
 	});
 }
-function deleteFile(fileID, displayDivID){
+function deleteFile(fileID){
 	var confirmResult = confirm("Are you sure you would like to delete this file?"); 
 	if(confirmResult){
 		startLoading("Deleting File");
 		$.ajax({
-	        url: 'requests/deleteFile.php',  //Server script to process data
+	        url: gDriveSubdir+'requests/deleteFile.php',  //Server script to process data
 	        type: 'POST',
 	        data: {access_token:accessToken, fileID:fileID},
 	    }).done(function(msg) {
@@ -134,7 +139,7 @@ function deleteFile(fileID, displayDivID){
 	    		alert("ERROR: "+msg);
 	    		stopLoading();
 	    	}else{
-	    		getFiles(filePath[filePath.length-1][1], displayDivID);
+	    		getFiles(filePath[filePath.length-1][1]);
 	    	}
 	    }).error(function(XHR, string, error){
 			alert("ERROR: "+string);
@@ -145,7 +150,7 @@ function deleteFile(fileID, displayDivID){
 	}
 }
 
-function uploadFile(formID, displayDivID){
+function uploadFile(formID){
 	startLoading("Starting Upload...");
 	//displayMsg("Starting Upload...");
 	
@@ -186,11 +191,11 @@ function uploadFile(formID, displayDivID){
     	$("#gdriveAuth").remove();
     	
     	//Refresh the files list
-    	getFiles(filePath[filePath.length-1][1], displayDivID);
+    	getFiles(filePath[filePath.length-1][1]);
 	}
 	var formData = new FormData($('#'+formID)[0]);
     $.ajax({
-        url: 'requests/uploadFile.php',  //Server script to process data
+        url: gDriveSubdir+'requests/uploadFile.php',  //Server script to process data
         type: 'POST',
         xhr: function() {  // Custom XMLHttpRequest
             var myXhr = $.ajaxSettings.xhr();
@@ -211,17 +216,17 @@ function uploadFile(formID, displayDivID){
     });
 }
 
-function getFiles(folderID, displayDivID, foldersOnly){
+function getFiles(folderID){
 	startLoading("Getting Folder");
 	//displayMsg("Getting folder "+folderID);
 	if(accessToken == ""){
-		$("#"+displayDivID).html("No Token. <a href='requests/login.php'>Please Log In</a>");
+		$(google_fileDiv).html("No Token. <a href='requests/login.php'>Please Log In</a>");
 		stopLoading();
 		return false;
 	}
 	updateLoadingProgress(50, "Asking Google For Files");
 	$.ajax({
-		url:"requests/getFiles.php",
+		url:gDriveSubdir+"requests/getFiles.php",
 		type:"POST",
 		data:{access_token:accessToken, folderID:folderID}
 	}).done(function(result){
@@ -229,15 +234,13 @@ function getFiles(folderID, displayDivID, foldersOnly){
 		try{
 			files = eval(result);
 			console.log(files);
-			//displayMsg("Files Retrieved");
-			if(displayDivID){
-				displayFiles(displayDivID, foldersOnly);
-			}
+			displayFiles(google_fileDiv, false);
+			displayFiles(google_folderDiv, true);
 			stopLoading();
 		}catch(e){
 			if(result.indexOf("token has expired") != -1){
-				$("#"+displayDivID).html("");
-				$("#"+displayDivID).html("Token Has Expired<br />"+accessToken);
+				$(google_fileDiv).html("");
+				$(google_fileDiv).html("Token Has Expired<br />"+accessToken);
 			}else{
 				alert("ERROR: "+e.message);
 				console.log(result);
@@ -250,8 +253,8 @@ function getFiles(folderID, displayDivID, foldersOnly){
 		console.log(error);
 	});
 }
-function linkFolders(displayDivID, foldersOnly){
-	$("#"+displayDivID+" .gdrive_folder").click(function(event){
+function linkFolders(){
+	$(".gdrive_folder").click(function(event){
 		event.preventDefault();
 		var id = $(this).attr("href");
 		var title = $(this).html();
@@ -270,12 +273,13 @@ function linkFolders(displayDivID, foldersOnly){
 				filePath.pop();
 			}
 		}
-		getFiles(id, displayDivID, foldersOnly);
+		getFiles(id);
 	});
 }
 function displayFiles(displayDivID, foldersOnly){
-	$("#"+displayDivID).html("");
-	var html = "<h1>Files</h1>";
+	console.log(displayDivID);
+	$(displayDivID).html("");
+	var html = "";
 	gdrive_folders = Array();
 	gdrive_files = Array();
 	
@@ -344,11 +348,11 @@ function displayFiles(displayDivID, foldersOnly){
 			html += gdrive_files[i].title+"<br />";
 		}
 	}
-	$("#"+displayDivID).html(html);
-	linkFolders(displayDivID, foldersOnly);
-	linkDeletes(displayDivID);
-	linkRename(displayDivID);
-	linkMove(displayDivID);
+	$(displayDivID).html(html);
+	linkFolders(foldersOnly);
+	linkDeletes();
+	linkRename();
+	linkMove();
 }
 
 

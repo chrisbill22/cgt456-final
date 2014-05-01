@@ -1,17 +1,17 @@
-<?php
+<?php session_start();
 
 
 function startGdrive($subdirToGdrive){
-	include("database.php");
+	include($subdirToGdrive."../database.php");
 	
 	include_once $subdirToGdrive."sdk/examples/templates/base.php";
 	set_include_path($subdirToGdrive."sdk/src/" . PATH_SEPARATOR . get_include_path());
 	require_once 'Google/Client.php';
 	require_once 'Google/Service/Drive.php';
 	
-	$client_id = "296417278308-i0htc2qfmng2i06ee31iqlq9l9ru045s.apps.googleusercontent.com";
-	$client_secret = "5xGBi-Ta3CaoP6ZJbaRODw2e";
-	$redirect_uri = "http://web.ics.purdue.edu/~bill0/pages/login.php"; // This must be the same as the Google Drive API Open URL
+	$client_id = "296417278308-qlpin6md2uo4jjlj646kpvgghs03b8io.apps.googleusercontent.com";
+	$client_secret = "YcFERO08hxd0OcpsqrD7C-bL";
+	$redirect_uri = "http://cgtweb1.tech.purdue.edu/456/cgt456web1a/Project3/gdrive/pages/login.php"; // This must be the same as the Google Drive API Open URL
 	
 	//Setup the google login client
 	$client = new Google_Client();
