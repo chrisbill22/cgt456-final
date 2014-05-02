@@ -1,4 +1,4 @@
-﻿<?php session_start(); include("database/database.php"); $fbID = "test"; $_SESSION['fbID'] = $fbID; ?>
+<?php session_start(); include("database/database.php"); $fbID = "test"; $_SESSION['fbID'] = $fbID; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
 <head>
@@ -64,7 +64,7 @@
 		                    <div id="FileOptions">
 		                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
 		                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
-		                    <img src="images/additionalOptions.png" width="25" border="0" height="25" alt="Additional Options" />
+		                    <img src="images/additionalOptions.png" width="15" border="0" height="15" alt="Additional Options" />
 		      				</div>
 	                    </li>
 	                    <hr>
