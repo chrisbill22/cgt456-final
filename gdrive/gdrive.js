@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 /*function displayMsg(string){
 	$("#message").html('');
-	$("#message").html(string);
+	$("#messagfe").html(string);
 	console.log(string);
 }*/
 

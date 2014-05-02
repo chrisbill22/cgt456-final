@@ -25,11 +25,13 @@ include("requests/getFile.php");
     		location.replace(newURL);
     	}
     </script>
+    <script type="text/javascript" src="jqueryUI/js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="jqueryUI/js/jquery-ui-1.10.4.custom.min.js"></script>
 </head>
 <body>
 <a href="requests/logout.php"><button>Logout</button></a>
 <a href="requests/authorize.php"><button>Login</button></a>
-<form action="requests/uploadFile.php" method="post">
+<form action="requests/uploadFile.php" method="post" enctype="multipart/form-data">
   <input type="file" id="uploadFile" name="dbFile" />
   <input type="submit" value="Upload">
   <input name="folder" type="hidden" value="$path"/>

@@ -1,66 +1,36 @@
-<?php
-$subDir = "../";
-include("../requests/authorize.php");
+<?php session_start();
 
-/*
-require_once "/Applications/XAMPP/xamppfiles/htdocs/456/dropbox/sdk/lib/Dropbox/autoload.php";
+require_once "../sdk/lib/Dropbox/autoload.php";
 use \Dropbox as dbx;
 
-if (empty($_FILES['file']['name'])) {
-	echo renderHtmlPage("Error", "Please choose a file to upload");
-	exit;
+if ($_FILES["dropboxFile"]["error"] > 0) {
+	echo "Error: " . $_FILES["dropboxFile"]["error"] . "\n";
+} else {
+	$folderID = $_POST['folderID'];
+	$title = $_FILES["dropboxFile"]["name"];
+	$MIME = $_FILES["dropboxFile"]["type"];
+	$filepath = $_FILES["dropboxFile"]["tmp_name"];
+	$description = "File was uploaded by the Purdue CGT 456 final project";
+
+	$subDir = "../";
+	include("../requests/authorize.php");
+	
+	
+	$remoteDir = "/";
+	if (isset($_POST['folderID'])) $remoteDir = $_POST['folderID'];
+	if($_POST['folderID'] == "root"){ $remoteDir = "/"; }
+	
+	$fp = fopen($_FILES['dropboxFile']['tmp_name'], "rb");
+	$remotePath = rtrim($remoteDir, "/")."/".$_FILES['dropboxFile']['name'];
+	$result = $dbxClient->uploadFile($remotePath, dbx\WriteMode::add(), $fp);
+	fclose($fp);
+	$str = print_r($result, TRUE);
+	echo $str;
 }
 
-if (!empty($_FILES['file']['error'])) {
-	echo renderHtmlPage("Error", "Error ".$_FILES['file']['error']." uploading file.  See <a href='http://php.net/manual/en/features.file-upload.errors.php'>the docs</a> for details");
-	exit;
+function removeExtension($string){
+	return preg_replace("/\\.[^.\\s]{2,5}$/", "", $string);
 }
 
 
-$remoteDir = "/";
-if (isset($_POST['folder'])) $remoteDir = $_POST['folder'];
-
-$remotePath = rtrim($remoteDir, "/")."/".$_FILES['file']['name'];
-
-$fp = fopen($_FILES['file']['tmp_name'], "rb");
-$result = $dbxClient->uploadFile($remotePath, dbx\WriteMode::add(), $fp);
-fclose($fp);
-$str = print_r($result, TRUE);
-echo renderHtmlPage("Uploading File", "Result: <pre>$str</pre>");
-
-function renderHtmlPage($title, $body)
-{
-    return <<<HTML
-    <html>
-        <head>
-            <title>$title</title>
-        </head>
-        <body>
-            <h1>$title</h1>
-            $body
-        </body>
-    </html>
-HTML;
-}
-*/
-
-$remoteDir = "/";
-if (isset($_POST['folder'])) $remoteDir = $_POST['folder'];
-$fp = fopen($_FILES['file']['tmp_name'], "rb");
-$remotePath = rtrim($remoteDir, "/")."/".$_FILES['file']['name'];
-$result = $dbxClient->uploadFile($remotePath, dbx\WriteMode::add(), $fp);
-fclose($fp);
-$str = print_r($result, TRUE);
-header("Location: dropbox.php");
-
-/*
-// upload files
-$f = fopen("requests/working-draft.txt", "rb");
-$result = $dbxClient->uploadFile("/requests/working-draft.txt", dbx\WriteMode::add(), $f);
-fclose($f);
-print_r($result);
-
-$folderMetadata = $dbxClient->getMetadataWithChildren("/");
-print_r($folderMetadata);
-*/
 ?>
