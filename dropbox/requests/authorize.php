@@ -15,8 +15,7 @@ $appInfoFile = "requests/authorization.json";
  * its data
  */
 
-$requestPath = init();
-if ($requestPath === "/dropbox-auth-finish") {
+if (init() === "/dropbox-auth-finish") {
     try {
         list($accessToken, $userId, $urlState) = getWebAuth()->finish($_GET);
         // We didn't pass in $urlState to finish, and we're assuming the session can't be

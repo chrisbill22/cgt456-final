@@ -1,17 +1,19 @@
-<?php session_start();
-
+<?php
+if(session_id() == '') {
+    session_start();
+}
 
 function startGdrive($subdirToGdrive){
-	include($subdirToGdrive."../database.php");
-	
+	include($subdirToGdrive."../database/database.php");
 	include_once $subdirToGdrive."sdk/examples/templates/base.php";
 	set_include_path($subdirToGdrive."sdk/src/" . PATH_SEPARATOR . get_include_path());
 	require_once 'Google/Client.php';
 	require_once 'Google/Service/Drive.php';
 	
-	$client_id = "296417278308-qlpin6md2uo4jjlj646kpvgghs03b8io.apps.googleusercontent.com";
-	$client_secret = "YcFERO08hxd0OcpsqrD7C-bL";
-	$redirect_uri = "http://cgtweb1.tech.purdue.edu/456/cgt456web1a/Project3/gdrive/pages/login.php"; // This must be the same as the Google Drive API Open URL
+	$client_id = "296417278308-updq0aprsjnd35ncfabblnjnvbpr0o2k.apps.googleusercontent.com";
+	$client_secret = "6AXUoSr8d3qEpccTE0zk00An";
+	//$redirect_uri = "http://cgtweb1.tech.purdue.edu/456/cgt456web1a/Project3/gdrive/pages/login.php"; // This must be the same as the Google Drive API Open URL
+	$redirect_uri = "http://cgt456.genyapps.com/gdrive/pages/login.php";
 	
 	//Setup the google login client
 	$client = new Google_Client();
@@ -29,10 +31,11 @@ function startGdrive($subdirToGdrive){
 	$client->addScope("https://www.googleapis.com/auth/drive.metadata.readonly");
 	$client->addScope("https://www.googleapis.com/auth/drive.readonly");
 	
-	if(empty($_SESSION['access_token'])){
-		$result = mysql_query("SELECT gID FROM cgt456_final WHERE fbID = '".$_SESSION['fbID']."'");
+	if(empty($_SESSION['fbID'])){
+		$query = "SELECT gdID FROM main WHERE fbID = '".$_SESSION['fbID']."'";
+		$result = mysql_query($query) or die("Query Error: ".$query);
 		$row = mysql_fetch_array($result);
-		$_SESSION['access_token'] = $row['gid'];
+		$_SESSION['gdID'] = $row['gdID'];
 	}
 	
 	return $client;

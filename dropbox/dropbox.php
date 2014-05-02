@@ -18,6 +18,13 @@ include("requests/getFile.php");
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>DB</title>
+    <script type="text/javascript">
+    //removes any extra crap that dropbox might try to add
+    	if(document.URL.indexOf(".php/") != -1){
+    		var newURL = document.URL.substr(0, document.URL.indexOf(".php/")+4);
+    		location.replace(newURL);
+    	}
+    </script>
 </head>
 <body>
 <a href="requests/logout.php"><button>Logout</button></a>

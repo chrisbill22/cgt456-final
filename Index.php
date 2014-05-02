@@ -1,4 +1,4 @@
-﻿<?php session_start(); include("database.php"); $fbID = "test"; $_SESSION['fbID'] = $fbID; ?>
+﻿<?php session_start(); include("database/database.php"); $fbID = "test"; $_SESSION['fbID'] = $fbID; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
 <head>
@@ -12,19 +12,39 @@
     <script type="text/javascript" src="jqueryUI/js/jquery-ui-1.10.4.custom.min.js"></script>
 	<script type="text/javascript" src="loader/loader.js"></script>
 	<script type="text/javascript" src="gdrive/gdrive.js"></script>
+	<script type="text/javascript" src="facebook/facebook.js"></script>
 	
 	<script type="text/javascript">
-		var accessToken = '<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>';
-		var accessObj = eval(<?php if(!empty($_SESSION['access_token'])){ echo $_SESSION['access_token']; } ?>);
-		renderDiv = "googleFiles";
+		var accessToken = '<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>';
+		var accessObj = eval(<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>);
 		gDriveSubdir = "gdrive/";
+		google_folderDiv = "#googleFolders";
+		google_fileDiv = "#googleFiles";
 	</script>
     
 </head>
 <body>
+	
+	<div id="mainLogin">
+		<div id="mainLogin_loading">
+			<center>
+				<br /><br />
+				Please Wait...
+			</center>
+		</div>
+		<div id="mainLogin_login" style="display: none;">
+			<center>
+				<small>Login with your Facebook ID</small>
+				<br /><br />
+				<fb:login-button scope="public_profile,email" size="xlarge" onlogin="checkLoginState();">
+				</fb:login-button>
+			</center>
+		</div>
+	</div>
+	
     <div id="header">
         <img src='images/NavBG.png' />
-        <img class="nav-AddCloudDevice" src="images/AddCloudDevice.png">
+        <a href="gdrive/pages/login.php"><img class="nav-AddCloudDevice" src="images/AddCloudDevice.png"></a>
         <img class="nav-AddFolder" src="images/AddFolder.png">
         <a href="#" class="nav-Logout">Logout</a>
         
@@ -44,7 +64,7 @@
 		                    <div id="FileOptions">
 		                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
 		                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
-		                    <img src="images/additionalOptions.png" width="25" border="0" height="25" alt="Additional Options" />
+		                    <img src="images/additionalOptions.png" width="15" border="0" height="15" alt="Additional Options" />
 		      				</div>
 	                    </li>
 	                    <hr>
@@ -74,13 +94,16 @@
                 <h3>jtheuerl</h3>
                 <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
                 <h3>jtheuerl92</h3>
-                <ul>
- 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
-                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
-                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
-                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
-                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
-                </ul>
+                <div id="googleFolders">
+                	<ul>
+	 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
+	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
+	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
+	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
+	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
+	                </ul>
+                </div>
+                
                 
                 <!-- Column 2 end -->
             </div>
