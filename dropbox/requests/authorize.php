@@ -1,10 +1,12 @@
 <?php
+if (empty($subDir)) {
+	$subDir = "";
+}
 
-
-require_once "sdk/lib/Dropbox/autoload.php";
+require_once $subDir."sdk/lib/Dropbox/autoload.php";
 use \Dropbox as dbx;
 
-$appInfoFile = "requests/authorization.json";
+$appInfoFile = $subDir."requests/authorization.json";
 
 /*
  * -------------------------------------
@@ -61,7 +63,7 @@ if (init() === "/dropbox-auth-finish") {
     // NOTE: A real web app would store the access token in a database.
     $_SESSION['access-token'] = $accessToken;
 
-    header("Locaiton: dropbox.php");
+    header("Location: dropbox.php");
 }
 function init()
 {

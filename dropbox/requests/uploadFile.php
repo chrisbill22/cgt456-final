@@ -1,9 +1,6 @@
 <?php
-
-echo "Hi";
-exit;
-
-include("requests/authorize.php");
+$subDir = "../";
+include("../requests/authorize.php");
 
 /*
 require_once "/Applications/XAMPP/xamppfiles/htdocs/456/dropbox/sdk/lib/Dropbox/autoload.php";
@@ -54,7 +51,7 @@ $remotePath = rtrim($remoteDir, "/")."/".$_FILES['file']['name'];
 $result = $dbxClient->uploadFile($remotePath, dbx\WriteMode::add(), $fp);
 fclose($fp);
 $str = print_r($result, TRUE);
-//header("Location: dropbox.php");
+header("Location: dropbox.php");
 
 /*
 // upload files

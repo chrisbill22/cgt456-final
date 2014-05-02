@@ -29,14 +29,10 @@ include("requests/getFile.php");
 <body>
 <a href="requests/logout.php"><button>Logout</button></a>
 <a href="requests/authorize.php"><button>Login</button></a>
-<form action="fsfd" method="post">
+<form action="requests/uploadFile.php" method="post">
   <input type="file" id="uploadFile" name="dbFile" />
   <input type="submit" value="Upload">
   <input name="folder" type="hidden" value="$path"/>
-</form>
-<form action="requests/uploadFile.php" method="post">
-  <input type="text" />
-  <input type="submit" value="Upload">
 </form>
 <?php 
 if ($entry['is_dir']) {
