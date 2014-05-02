@@ -7,13 +7,14 @@ $(document).ready(function() {
 		modal : true,
 		title : "Please Login",
 		closeOnEscape : false,
-		autoOpen:false
+		//autoOpen:false
 	});
 });
 
 var facebookID;
 var googleDriveID;
 var dropboxID;
+var username;
 
 
 // This is called with the results from from FB.getLoginStatus().
@@ -102,6 +103,12 @@ function testAPI() {
 		//console.log(response);
 		//console.log(JSON.stringify(response));
 		var fbData = eval(response);
+		username = fbData.first_name;
+		
+		$(".name").each(function(){
+			$(this).html(username);
+		});
+		
 		//console.log(fbData.id);
 		
 		$.ajax({

@@ -56,7 +56,7 @@
                 
                 <!-- Column 1 start -->
                 <img class="CloudAccount" src="images/googledrivelogo.png" width="45" border="0" height="39" alt="Google Drive Logo" />
-                <h3>jtheuerl92</h3>
+                <h3 class="name"></h3>
                 <div id="googleFiles">
 	                <ul>
 	                	<hr>
@@ -64,7 +64,7 @@
 		                    <div id="FileOptions">
 		                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
 		                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
-		                    <img src="images/additionalOptions.png" width="15" border="0" height="15" alt="Additional Options" />
+		                    <img src="images/additionalOptions.png" width="25" border="0" height="25" alt="Additional Options" />
 		      				</div>
 	                    </li>
 	                    <hr>
@@ -95,9 +95,9 @@
                 <!-- Column 2 start -->
 
                 <img class="CloudAccount" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
-                <h3>jtheuerl</h3>
+                <h3 class="name"></h3>
                 <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
-                <h3>jtheuerl92</h3>
+                <h3 class="name"></h3>
                 <div id="googleFolders">
                 	<ul>
 	 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
