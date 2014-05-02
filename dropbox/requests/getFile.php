@@ -1,4 +1,8 @@
 <?php
+session_start();
+$subDir = "../";
+include("../requests/authorize.php");
+
 $body;
 /*
 if ($dbxClient === false) {
@@ -19,9 +23,6 @@ function renderFile($entry)
         <pre>$metadataStr</pre>
         <a href="$downloadPath">Download this file</a>
 HTML;
-
-	$json = array2json($entry['path']);
-    print $json;
 	
     return renderHtmlPage("File: ".$entry['path'], $body);
 }
@@ -61,4 +62,17 @@ function renderHtmlPage($title, $body)
     </html>
 HTML;
 }
+print_r(json_encode($entry));
+
+if(empty($_POST[""])) {
+	
+} else {
+	
+}
+
+
+
+
+
+
 ?>
