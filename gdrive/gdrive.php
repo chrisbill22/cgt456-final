@@ -10,9 +10,10 @@ function startGdrive($subdirToGdrive){
 	require_once 'Google/Client.php';
 	require_once 'Google/Service/Drive.php';
 	
-	$client_id = "296417278308-p35ldv36hc3qk8a8iujv7s6cimjjrdhk.apps.googleusercontent.com";
-	$client_secret = "Hk4Qu7L6Vt0p2iB7-sw9WMHd";
-	$redirect_uri = "http://cgt456.genyapps.com/gdrive/pages/login.php"; // This must be the same as the Google Drive API Open URL
+	$client_id = "296417278308-updq0aprsjnd35ncfabblnjnvbpr0o2k.apps.googleusercontent.com";
+	$client_secret = "6AXUoSr8d3qEpccTE0zk00An";
+	//$redirect_uri = "http://cgtweb1.tech.purdue.edu/456/cgt456web1a/Project3/gdrive/pages/login.php"; // This must be the same as the Google Drive API Open URL
+	$redirect_uri = "http://cgt456.genyapps.com/gdrive/pages/login.php";
 	
 	//Setup the google login client
 	$client = new Google_Client();

@@ -12,28 +12,28 @@ if (isset($_GET['code'])) {
 	echo "1";
 	$client = startGdrive("../");
 	echo "2";
-	$client->setAccessType("offline");
-	echo "3";
-	$client->authenticate($_GET['code']);
+	$token = $client->authenticate($_GET['code']);
 	
 	//$_SESSION['access_token'] = $client->getAccessToken(); //Save as session for easy access
 	//mysql_query("UPDATE main SET gID = '".$client->getAccessToken()."' WHERE fbID = '".$_SESSION['fbID']."'"); //Save to DB for permanent access
-	echo "4";
+	echo "3";
 	$fbID = $_SESSION['fbID'];
-	echo "5";
+	echo "4";
 	$gdID = $client->getAccessToken();
-	include("../../saveGD.php");
-	
+	echo "5";
+	$_SESSION['gdID'] = $gdID;
+	include("../../database/saveGD.php");
+	echo "6";
 	$redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 	//header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
-	header('Locaiton:../../index.php');
+	header('Location: ../../index.php');
 }
 
 
 //If we have the user logged in, set that access token in the class
 if (isset($_SESSION['gdID']) && $_SESSION['gdID']) {
 	//We've got everything setup so let's redirect to the main page
-	header('Location:../../index.php');
+	//header('Location:../../index.php');
 } else {
 	$client = startGdrive("../");
 	$client->setAccessType("offline");
