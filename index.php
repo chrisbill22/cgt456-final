@@ -15,8 +15,8 @@
 	<script type="text/javascript" src="facebook/facebook.js"></script>
 	
 	<script type="text/javascript">
-		var accessToken = '<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>';
-		var accessObj = eval(<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>);
+		var gdID = '<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>';
+		//var accessObj = eval(<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>);
 		gDriveSubdir = "gdrive/";
 		google_folderDiv = "#googleFolders";
 		google_fileDiv = "#googleFiles";
@@ -62,9 +62,10 @@
 	                	<hr>
 	                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess
 		                    <div id="FileOptions">
-		                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
-		                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
-		                    <img src="images/additionalOptions.png" width="25" border="0" height="25" alt="Additional Options" />
+		                    	<img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download" />	
+		                    	<img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
+		                    	<img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Open"/>
+		                    	<img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"/>
 		      				</div>
 	                    </li>
 	                    <hr>
@@ -94,8 +95,8 @@
             <div class="col2">
                 <!-- Column 2 start -->
 
-                <img class="CloudAccount" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
-                <h3>Connect your account!</h3>
+                <img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
+                <h3 class="CloudNotConnected">Connect your account!</h3>
 	                <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
 	            <h3>Connect your account!</h3>
 	                <div id="googleFolders">

@@ -33,30 +33,45 @@
 	height:56px;
 	padding-top:40px;
 	position:absolute;
-	left:450px;
+	left:1100px;
 }
 #header .nav-AddFolder:hover{
 	opacity:0.8;
 	filter:alpha(opacity=80); /* For IE8 and earlier */
 }
-.logoutButton {
-   width:100px;
-   height:40px;
-   	padding-left:450px;
-	padding-top:40px;
-   border-top: 1px solid #96d1f8;
-   background: #FFFFFF;
-   padding: 5px 10px;
-   -webkit-border-radius: 8px;
-   -moz-border-radius: 8px;
-   border-radius: 8px;
-   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   box-shadow: rgba(0,0,0,1) 0 1px 0;
-   text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   color: #000000;
-   text-decoration: none;
-   vertical-align: middle;
+.nav-Logout {
+	position:absolute;
+	top:18px;
+	left:1200px;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #b7bbbd) );
+	background:-moz-linear-gradient( center top, #ffffff 5%, #b7bbbd 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#b7bbbd');
+	background-color:#ffffff;
+	-webkit-border-top-left-radius:32px;
+	-moz-border-radius-topleft:32px;
+	border-top-left-radius:32px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:32px;
+	-moz-border-radius-bottomright:32px;
+	border-bottom-right-radius:32px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #000000;
+	display:inline-block;
+	color:#5c5c5c;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:65px;
+	line-height:65px;
+	width:86px;
+	text-decoration:none;
+	text-align:center;
 }
 #FileOptions{
 	float:right;
@@ -78,12 +93,17 @@ a:hover {
 {
 	float:left;
 	padding-top: 8px;
+	margin-right:5px;
+}
+.CloudNotConnected
+{
+	float:left;
+	padding-top: 8px;
 	opacity:0.5;
 	margin-right:5px;
 }
 h3{
 	padding:6px;
-	opacity:0.5;
 }
 h1, h2, h3 {
 	margin:.8em 0 .2em 0;
