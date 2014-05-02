@@ -17,8 +17,9 @@
 	<script type="text/javascript">
 		var accessToken = '<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>';
 		var accessObj = eval(<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>);
-		renderDiv = "googleFiles";
 		gDriveSubdir = "gdrive/";
+		google_folderDiv = "#googleFolders";
+		google_fileDiv = "#googleFiles";
 	</script>
     
 </head>
@@ -93,13 +94,16 @@
                 <h3>jtheuerl</h3>
                 <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
                 <h3>jtheuerl92</h3>
-                <ul>
- 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
-                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
-                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
-                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
-                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
-                </ul>
+                <div id="googleFolders">
+                	<ul>
+	 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
+	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
+	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
+	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
+	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
+	                </ul>
+                </div>
+                
                 
                 <!-- Column 2 end -->
             </div>
