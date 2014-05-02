@@ -38,7 +38,7 @@ include("requests/getFile.php");
   <input type="submit" value="Upload">
   <input name="folder" type="hidden" value="$path"/>
 </form>
-<button id="cF">Create Folder</button>
+<a href="requests/createFolder.php"><button id>Create Folder</button></a>
 <?php 
 if ($entry['is_dir']) {
 	echo renderFolder($entry);
@@ -50,5 +50,11 @@ if ($entry['is_dir']) {
 ?>
 
 </body>
-
+<script>
+$("#cF").click(function() {
+  <?php
+  	$dbxClient->createFolder('/new folder');
+  ?>
+});
+</script>
 </html>
