@@ -44,7 +44,7 @@
 		                    <div id="FileOptions">
 		                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
 		                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
-		                    <img src="images/additionalOptions.png" width="15" border="0" height="15" alt="Additional Options" />
+		                    <img src="images/additionalOptions.png" width="25" border="0" height="25" alt="Additional Options" />
 		      				</div>
 	                    </li>
 	                    <hr>
