@@ -15,8 +15,8 @@
 	<script type="text/javascript" src="facebook/facebook.js"></script>
 	
 	<script type="text/javascript">
-		var accessToken = '<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>';
-		var accessObj = eval(<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>);
+		var gdID = '<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>';
+		//var accessObj = eval(<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>);
 		gDriveSubdir = "gdrive/";
 		google_folderDiv = "#googleFolders";
 		google_fileDiv = "#googleFiles";
