@@ -20,6 +20,9 @@ function renderFile($entry)
         <a href="$downloadPath">Download this file</a>
 HTML;
 
+	$json = array2json($entry['path']);
+    print $json;
+	
     return renderHtmlPage("File: ".$entry['path'], $body);
 }
 
