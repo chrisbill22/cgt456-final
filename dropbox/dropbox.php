@@ -31,7 +31,7 @@ include("requests/getFile.php");
 <body>
 <a href="requests/logout.php"><button>Logout</button></a>
 <a href="requests/authorize.php"><button>Login</button></a>
-<form action="requests/uploadFile.php" method="post">
+<form action="requests/uploadFile.php" method="post" enctype="multipart/form-data">
   <input type="file" id="uploadFile" name="dbFile" />
   <input type="submit" value="Upload">
   <input name="folder" type="hidden" value="$path"/>
