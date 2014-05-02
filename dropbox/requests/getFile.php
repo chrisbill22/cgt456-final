@@ -10,6 +10,7 @@ if ($dbxClient === false) {
 	exit;
 }
 */
+
 $path = "/";
 if (isset($_GET['path'])) $path = $_GET['path'];
 
@@ -22,6 +23,7 @@ function renderFile($entry)
     $body = <<<HTML
         <pre>$metadataStr</pre>
         <a href="$downloadPath">Download this file</a>
+		<button action="delete();">Delete</button>
 HTML;
 	
     return renderHtmlPage("File: ".$entry['path'], $body);
@@ -42,7 +44,7 @@ function renderFolder($entry)
 
         $cp = htmlspecialchars($cp);
         $link = getPath("?path=".htmlspecialchars($cp));
-        $listing .= "<div><a style='text-decoration: none' href='$link'>$cn</a></div>";
+        $listing .= "<div><a style='text-decoration: none' href='$link'>$cn</a><a href='requests/deleteFile.php?path=".htmlspecialchars($cp)."'><button>Delete</button><a href='requests/renameFile.php?path=".htmlspecialchars($cp)."'><button>Rename</button></a></div>";
     }
 
     return renderHtmlPage("Folder: $entry[path]", $form.$listing);
@@ -62,7 +64,7 @@ function renderHtmlPage($title, $body)
     </html>
 HTML;
 }
-print_r(json_encode($entry));
+//print_r(json_encode($entry));
 
 if(empty($_POST[""])) {
 	

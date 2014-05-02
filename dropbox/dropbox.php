@@ -10,6 +10,8 @@ print_r($fileMetadata);
 include("requests/authorize.php");
 //include("requests/downloadFile.php");
 include("requests/getFile.php");
+
+
 ?>
 
 
@@ -36,13 +38,17 @@ include("requests/getFile.php");
   <input type="submit" value="Upload">
   <input name="folder" type="hidden" value="$path"/>
 </form>
+<button id="cF">Create Folder</button>
 <?php 
 if ($entry['is_dir']) {
 	echo renderFolder($entry);
 } else {
 	echo renderFile($entry);
 } 
+
+//echo renderFile($entry);
 ?>
 
 </body>
+
 </html>
