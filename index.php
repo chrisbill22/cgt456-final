@@ -62,10 +62,10 @@
 	                	<hr>
 	                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess
 		                    <div id="FileOptions">
-		                    	<img class="Download"images/additionalOptions.png" width="25" border="0" height="25" alt="Download" />	
-		                    <img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
-		                    <img class="fadein" src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
-		                    <img class="fadein" src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
+		                    	<img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download" />	
+		                    	<img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
+		                    	<img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Open"/>
+		                    	<img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"/>
 		      				</div>
 	                    </li>
 	                    <hr>
