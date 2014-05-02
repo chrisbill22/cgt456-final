@@ -24,7 +24,7 @@
     
 </head>
 <body>
-	
+	<!-- LOGIN POPUP -->
 	<div id="mainLogin">
 		<div id="mainLogin_loading">
 			<center>
@@ -83,6 +83,10 @@
 	                    <li>WeddingInvites.doc</li>
 	                </ul>
                 </div>
+                
+                <div id="dropboxFiles">
+                	
+                </div>
 
                 <!-- Column 1 end -->
             </div>
@@ -102,6 +106,10 @@
 	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
 	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
 	                </ul>
+                </div>
+                
+                <div id="dropboxFiles">
+                	
                 </div>
                 
                 
