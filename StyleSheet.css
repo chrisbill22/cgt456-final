@@ -78,12 +78,12 @@ a:hover {
 {
 	float:left;
 	padding-top: 8px;
+	opacity:0.5;
+	margin-right:5px;
 }
 h3{
-	padding:6px
-}
-#selected{
-	background:#cccccc;
+	padding:6px;
+	opacity:0.5;
 }
 h1, h2, h3 {
 	margin:.8em 0 .2em 0;
@@ -205,7 +205,9 @@ p {
 .col2 ul li img{
 	margin-bottom:-9px; /* aligns folders in list with text*/
 }
-
+.image{
+	margin-right:5px;
+}
 hr {
 	color:#898989;
 	background-color:#898989;
