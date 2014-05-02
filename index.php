@@ -60,7 +60,7 @@
                 <div id="googleFiles">
 	                <ul>
 	                	<hr>
-	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess
+	                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess
 		                    <div id="FileOptions">
 		                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
 		                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
@@ -68,13 +68,13 @@
 		      				</div>
 	                    </li>
 	                    <hr>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
+	                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
 	                    <hr>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
+	                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
 	                    <hr>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
+	                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
 	                    <hr>
-	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
+	                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
 	                    <hr>
 	                    <li>easter.jpg</li>
 	                    <hr>
@@ -95,18 +95,18 @@
                 <!-- Column 2 start -->
 
                 <img class="CloudAccount" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
-                <h3 class="name">Connect your account!</h3>
-                <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
-                <h3 id="selected" class="name">Connect your account!</h3>
-                <div id="googleFolders">
-                	<ul>
-	 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
-	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
-	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
-	                </ul>
-                </div>
+                <h3>Connect your account!</h3>
+	                <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
+	            <h3>Connect your account!</h3>
+	                <div id="googleFolders">
+	                	<ul>
+		 					<li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
+		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
+		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
+		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
+		                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
+		                </ul>
+	                </div>
                 
                 <div id="dropboxFiles">
                 	
