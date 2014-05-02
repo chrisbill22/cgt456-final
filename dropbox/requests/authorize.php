@@ -147,5 +147,11 @@ function getPath($relative_path)
     }
 }
 
+function respondWithError($code, $title, $body = "")
+{
+    echo "<h1>".$code."</h1>";
+	echo " - ".$title;
+	echo "<p>".$body."</p>";
+}
 
 ?>

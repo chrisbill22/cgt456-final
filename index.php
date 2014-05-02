@@ -1,4 +1,4 @@
-﻿<?php session_start(); include("database/database.php"); $fbID = "test"; $_SESSION['fbID'] = $fbID; ?>
+<?php session_start(); include("database/database.php"); $fbID = "test"; $_SESSION['fbID'] = $fbID; ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
 <head>
@@ -24,7 +24,7 @@
     
 </head>
 <body>
-	
+	<!-- LOGIN POPUP -->
 	<div id="mainLogin">
 		<div id="mainLogin_loading">
 			<center>
@@ -56,7 +56,7 @@
                 
                 <!-- Column 1 start -->
                 <img class="CloudAccount" src="images/googledrivelogo.png" width="45" border="0" height="39" alt="Google Drive Logo" />
-                <h3>jtheuerl92</h3>
+                <h3 class="name"></h3>
                 <div id="googleFiles">
 	                <ul>
 	                	<hr>
@@ -64,7 +64,7 @@
 		                    <div id="FileOptions">
 		                    <img src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
 		                    <img src="images/Move.png" width="25" border="0" height="25" alt="Move Document"/>
-		                    <img src="images/additionalOptions.png" width="15" border="0" height="15" alt="Additional Options" />
+		                    <img src="images/additionalOptions.png" width="25" border="0" height="25" alt="Additional Options" />
 		      				</div>
 	                    </li>
 	                    <hr>
@@ -83,6 +83,10 @@
 	                    <li>WeddingInvites.doc</li>
 	                </ul>
                 </div>
+                
+                <div id="dropboxFiles">
+                	
+                </div>
 
                 <!-- Column 1 end -->
             </div>
@@ -91,9 +95,9 @@
                 <!-- Column 2 start -->
 
                 <img class="CloudAccount" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
-                <h3>jtheuerl</h3>
+                <h3 class="name"></h3>
                 <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
-                <h3>jtheuerl92</h3>
+                <h3 class="name"></h3>
                 <div id="googleFolders">
                 	<ul>
 	 					<li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
@@ -102,6 +106,10 @@
 	                    <li><img src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
 	                    <li><img src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
 	                </ul>
+                </div>
+                
+                <div id="dropboxFiles">
+                	
                 </div>
                 
                 
