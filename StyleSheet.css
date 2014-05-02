@@ -82,6 +82,9 @@ a:hover {
 h3{
 	padding:6px
 }
+#selected{
+	background:#cccccc;
+}
 h1, h2, h3 {
 	margin:.8em 0 .2em 0;
 }
@@ -207,8 +210,8 @@ hr {
 	color:#898989;
 	background-color:#898989;
 	height: 1px;
-	margin-bottom:3px;
-	margin-top:20px;
+	margin-bottom:2px;
+	margin-top:15px;
 }
 /* 2 Column (left menu) settings */
 .menu {
@@ -228,9 +231,12 @@ hr {
 	width:19%;	
     padding-left:13px;		
 	left:-75%;	
-    background:#cccccc;	
+    background: #e5e5e5;	
     min-height:550px;
     padding-top: 20px;	
+	-webkit-box-shadow: 2px 1px 10px 4px rgba(105,105,105,0.82);
+	-moz-box-shadow: 2px 1px 10px 4px rgba(105,105,105,0.82);
+	box-shadow: 2px 1px 10px 4px rgba(105,105,105,0.82);
 }
 /* Footer styles */
 #footer {
