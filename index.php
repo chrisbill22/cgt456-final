@@ -18,7 +18,7 @@
 		var gdID = '<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>';
 		//var accessObj = eval(<?php if(!empty($_SESSION['gdID'])){ echo $_SESSION['gdID']; } ?>);
 		gDriveSubdir = "gdrive/";
-		google_folderDiv = "#googleFolders";
+		google_folderDiv = "#googleFolders .folders";
 		google_fileDiv = "#googleFiles";
 	</script>
     
@@ -44,7 +44,7 @@
 	
     <div id="header">
         <img src='images/NavBG.png' />
-        <a href="gdrive/pages/login.php"><img class="nav-AddCloudDevice" src="images/AddCloudDevice.png"></a>
+        <a href=""><img class="nav-AddCloudDevice" src="images/AddCloudDevice.png"></a>
         <img class="nav-AddFolder" src="images/AddFolder.png">
         <a href="#" class="nav-Logout">Logout</a>
         
@@ -94,12 +94,30 @@
 
             <div class="col2">
                 <!-- Column 2 start -->
-
-                <img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
-                <h3 class="CloudNotConnected">Connect your account!</h3>
-	                <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
-	            <h3>Connect your account!</h3>
-	                <div id="googleFolders">
+				
+				<div id="dropboxAdd" style="display: none;">
+					<a href="https://cgt456.genyapps.com/dropbox/pages/login.php">
+		                <img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
+		                <h3 class="CloudNotConnected">Connect your account!</h3>
+	                </a>
+                </div>
+                <div id="gdriveAdd" style="display: none;">
+                	<a href="gdrive/pages/login.php">
+			            <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
+			            <h3>Connect your account!</h3>
+			        </a>
+	            </div>
+                <div id="googleFolders" style="display: none;">
+                	<img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
+		            <h3>Your Drive</h3>
+		            <div class="folders">
+	                	<button onclick="getFiles('')">Get Files</button>
+	                </div>
+                </div>
+                <div id="dropboxFolders" style="display: none;">
+                	<img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
+	                <h3 class="CloudNotConnected">Your Dropbox</h3>
+	                <div class="folders">
 	                	<ul>
 		 					<li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
 		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
@@ -108,11 +126,7 @@
 		                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
 		                </ul>
 	                </div>
-                
-                <div id="dropboxFiles">
-                	
                 </div>
-                
                 
                 <!-- Column 2 end -->
             </div>
