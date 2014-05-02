@@ -61,7 +61,7 @@ if (init() === "/dropbox-auth-finish") {
     }
 
     // NOTE: A real web app would store the access token in a database.
-    $_SESSION['access-token'] = $accessToken;
+    $_SESSION['dbID'] = $accessToken;
 
     header("Location: dropbox.php");
 }
@@ -109,12 +109,12 @@ function getAppConfig()
 
 function getClient()
 {
-    if(!isset($_SESSION['access-token'])) {
+    if(!isset($_SESSION['dbID'])) {
         return false;
     }
 
     list($appInfo, $clientIdentifier, $userLocale) = getAppConfig();
-    $accessToken = $_SESSION['access-token'];
+    $accessToken = $_SESSION['dbID'];
     return new dbx\Client($accessToken, $clientIdentifier, $userLocale, $appInfo->getHost());
 }
 
