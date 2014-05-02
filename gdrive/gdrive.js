@@ -1,8 +1,8 @@
 var files = "";
 var tempFilePath;
 var filePath = Array(Array("root","root"));
-var accessToken;
-var accessObj;
+var gdID;
+//var accessObj;
 var gdrive_folders;
 var gdrive_files;
 var moveID;
@@ -74,7 +74,7 @@ function moveFile(fileID, newParent, oldParent){
 	$.ajax({
         url: gDriveSubdir+'requests/moveFile.php',  //Server script to process data
         type: 'POST',
-        data: {access_token:accessToken, fileID:fileID, oldParent:oldParent, newParent:newParent},
+        data: {access_token:gdID, fileID:fileID, oldParent:oldParent, newParent:newParent},
     }).done(function(msg) {
     	console.log(msg);
 		//getFiles(filePath[filePath.length-1][1]);
@@ -109,7 +109,7 @@ function renameFile(fileID, newName){
 	$.ajax({
         url: gDriveSubdir+'requests/renameFile.php',  //Server script to process data
         type: 'POST',
-        data: {access_token:accessToken, fileID:fileID, newFileName:newName},
+        data: {access_token:gdID, fileID:fileID, newFileName:newName},
     }).done(function(msg) {
 		getFiles(filePath[filePath.length-1][1]);
     }).error(function(XHR, string, error){
@@ -133,7 +133,7 @@ function deleteFile(fileID){
 		$.ajax({
 	        url: gDriveSubdir+'requests/deleteFile.php',  //Server script to process data
 	        type: 'POST',
-	        data: {access_token:accessToken, fileID:fileID},
+	        data: {access_token:gdID, fileID:fileID},
 	    }).done(function(msg) {
 	    	if(msg.indexOf("True") == -1){
 	    		alert("ERROR: "+msg);
@@ -167,7 +167,7 @@ function uploadFile(formID){
 	
 	//We need to set the value to actual form items because the ajax can only send the form data from the page
 	$("#data_folderID").val(folderID);
-	$("#gdriveAuth").val(accessToken);
+	$("#gdriveAuth").val(gdID);
 	
 	function errorHandler(XHR, msg, errorMsg){
 		alert("ERROR: "+errorMsg);
@@ -219,7 +219,7 @@ function uploadFile(formID){
 function getFiles(folderID){
 	startLoading("Getting Folder");
 	//displayMsg("Getting folder "+folderID);
-	if(accessToken == ""){
+	if(gdID == ""){
 		$(google_fileDiv).html("No Token. <a href='requests/login.php'>Please Log In</a>");
 		stopLoading();
 		return false;
@@ -228,7 +228,7 @@ function getFiles(folderID){
 	$.ajax({
 		url:gDriveSubdir+"requests/getFiles.php",
 		type:"POST",
-		data:{access_token:accessToken, folderID:folderID}
+		data:{access_token:gdID, folderID:folderID}
 	}).done(function(result){
 		updateLoadingProgress(70, "Rendering Results");
 		try{
@@ -240,7 +240,7 @@ function getFiles(folderID){
 		}catch(e){
 			if(result.indexOf("token has expired") != -1){
 				$(google_fileDiv).html("");
-				$(google_fileDiv).html("Token Has Expired<br />"+accessToken);
+				$(google_fileDiv).html("Token Has Expired<br />"+gdID);
 			}else{
 				alert("ERROR: "+e.message);
 				console.log(result);
@@ -257,7 +257,7 @@ function linkFolders(){
 	$(".gdrive_folder").click(function(event){
 		event.preventDefault();
 		var id = $(this).attr("href");
-		var title = $(this).html();
+		var title = $(this).children(".fileName").html();
 		
 		var contains = false;
 		for(var i = 0; i != filePath.length; i++) {
@@ -303,6 +303,7 @@ function displayFiles(displayDivID, foldersOnly){
 
 	
 	if(filePath.length > 1){
+		html += "<div class='breadcrumbs'>";
 		for(x=0; x!=filePath.length; x++){
 			if(x!=0){
 				html += " > ";
@@ -310,44 +311,61 @@ function displayFiles(displayDivID, foldersOnly){
 			if(x == filePath.length-1){
 				html += "<strong>";
 			}
-			html += capitaliseFirstLetter(filePath[x][0]);
+			html += "<span class='breadcrums_item'>"+capitaliseFirstLetter(filePath[x][0])+"</span>";
 			if(x == filePath.length-1){
 				html += "</strong>";
 			}
 		}
+		html += "</div>";
 	}
-	html += "";
+	html += "<ul>";
 	
 	if(filePath.length > 1){
-		html += "<br /><br /><a class='gdrive_folder' href='"+(filePath[filePath.length-2][1])+"'>Back</a><br />";
+		html += "<li><a class='gdrive_folder' href='"+(filePath[filePath.length-2][1])+"'>Back</a></li>";
 	}
 	
 	for(i=0; i!=gdrive_folders.length; i++){
-		html += "<img src='"+gdrive_folders[i].iconLink+"'>";
-		html += "<a class='gdrive_folder' href='"+gdrive_folders[i].id+"'>"+gdrive_folders[i].title+"</a><br />";
+		html += "<li>";
+			if(!foldersOnly){
+				html += "<hr />";
+			}
+			html += "<a class='gdrive_folder' href='"+gdrive_folders[i].id+"'>";
+				html += "<img width='30' border='0' height='30' alt='folder' src='"+gdrive_folders[i].iconLink+"'>";
+				html += "<span class='fileName'>"+gdrive_folders[i].title+"</span>";
+			html += "</a>";
+		html += "</li>";
 	}
 	
 	if(!foldersOnly){
 		for(i=0; i!=gdrive_files.length; i++){
-			
-			if(gdrive_files[i].alternateLink){
-				html += "<a href='"+gdrive_files[i].alternateLink+"' target='blank'>Open</a> ";
-			}
-			
-			if(gdrive_files[i].webContentLink){
-				html += "<a href='"+gdrive_files[i].webContentLink+"' target='blank'>Download</a> ";
-			}
-			
-			html += "<a href='"+gdrive_files[i].id+"' class='deleteBt'>Delete</a> ";
-			
-			html += "<a href='"+gdrive_files[i].id+"' class='renameBt'>Rename</a> ";
-			
-			//html += "<a href='"+gdrive_files[i].id+"' class='moveBt'>Move</a> ";
-			
+			html += "<li>";
+			html += "<hr />";
 			html += "<img src='"+gdrive_files[i].iconLink+"'>";
 			html += gdrive_files[i].title+"<br />";
+			
+			if(!foldersOnly){
+				html += '<div id="FileOptions">';
+				
+				if(gdrive_files[i].alternateLink){
+					html += '<a href="'+gdrive_files[i].alternateLink+'" target="blank"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Open"></a> ';
+				}
+				
+				if(gdrive_files[i].webContentLink){
+					html += '<a href="'+gdrive_files[i].webContentLink+'" target="blank"><img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download"></a> ';
+				}
+				
+				html += '<a href="'+gdrive_files[i].id+'" class="deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
+				
+				html += '<a href="'+gdrive_files[i].id+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
+				
+				//html += "<a href='"+gdrive_files[i].id+"' class='moveBt'>Move</a> ";
+				html += "</div>";
+			}
+			html += "</li>";
 		}
 	}
+	html += "</ul>";
+	
 	$(displayDivID).html(html);
 	linkFolders(foldersOnly);
 	linkDeletes();

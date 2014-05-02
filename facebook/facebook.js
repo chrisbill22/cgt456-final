@@ -7,7 +7,7 @@ $(document).ready(function() {
 		modal : true,
 		title : "Please Login",
 		closeOnEscape : false,
-		autoOpen:false
+		//autoOpen:false
 	});
 });
 
@@ -121,6 +121,16 @@ function testAPI() {
 	    		facebookID = dbData.fbID;
 	    		dropboxID = dbData.dbID;
 	    		googleDriveID = dbData.gdID;
+	    		if(dropboxID){
+	    			$("#dropboxFolders").show();
+	    		}else{
+	    			$("#dropboxAdd").show();
+	    		}
+	    		if(googleDriveID){
+	    			$("#googleFolders").show();
+	    		}else{
+	    			$("#googleAdd").show();
+	    		}
 	    	}catch(e){
 				alert("Eval Error: "+msg);	    		
 	    	}

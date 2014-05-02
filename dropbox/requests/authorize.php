@@ -109,7 +109,7 @@ function getAppConfig()
 
 function getClient()
 {
-    if(!isset($_SESSION['dbID'])) {
+    if(empty($_SESSION['dbID'])) {
         return false;
     }
 
