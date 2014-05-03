@@ -50,8 +50,8 @@
 					
 				<li style="display: none;">
 					<div id="dropboxAdd">
-						<!--<a href="https://cgt456.genyapps.com/dropbox/pages/login.php">-->
-						<a href="dropbox/pages/login.php">
+						<a href="https://cgt456.genyapps.com/dropbox/pages/login.php">
+						<!--<a href="dropbox/pages/login.php"></a>-->
 			                <img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
 			                <h3 class="CloudNotConnected">Connect your account!</h3>
 		                </a>
