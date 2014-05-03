@@ -1,7 +1,62 @@
 var filePath = Array(Array("root","root"));
 var dBoxSubdir = "";
 
-function uploadFile(formID){
+
+
+
+
+
+function db_getFiles(folderID){
+	if(folderID == "root" || folderID == ""){
+		folderID = "/";
+	}
+	currentView = "dbox";
+	startLoading("Getting Files");
+	//displayMsg("Getting folder "+folderID);
+	if(dbID == ""){
+		$(google_fileDiv).html("No Token. <a href='requests/login.php'>Please Log In</a>");
+		stopLoading();
+		return false;
+	}
+	updateLoadingProgress(50, "Asking Dropbox For Files");
+	$.ajax({
+		url:dBoxSubdir+"requests/getFile.php",
+		type:"POST",
+		data:{access_token:dbID, folderID:folderID}
+	}).done(function(result){
+		updateLoadingProgress(70, "Rendering Results");
+		try{
+			files = eval(result);
+			console.log(files);
+			//gd_displayFiles(google_fileDiv, false);
+			//gd_displayFiles(google_folderDiv, true);
+			stopLoading();
+			//gd_linkFolders();
+			//gd_linkDeletes();
+			//gd_linkRename();
+			//gd_linkMove();
+		}catch(e){
+			if(result.indexOf("token has expired") != -1){
+				$(google_fileDiv).html("");
+				$(google_fileDiv).html("Token Has Expired<br />"+gdID);
+			}else{
+				alert("ERROR: "+e.message);
+				console.log(result);
+			}
+		}
+	}).error(function(XHR, string, error){
+		alert("ERROR: "+string);
+		console.log(XHR);
+		console.log(string);
+		console.log(error);
+	});
+}
+
+
+
+
+
+function db_uploadFile(formID){
 	startLoading("Starting Upload...");
 	//displayMsg("Starting Upload...");
 	
