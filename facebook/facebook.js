@@ -7,7 +7,7 @@ $(document).ready(function() {
 		modal : true,
 		title : "Please Login",
 		closeOnEscape : false,
-		autoOpen:false
+		//autoOpen:false
 	});
 });
 
