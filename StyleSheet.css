@@ -211,17 +211,20 @@ p {
     font-size:small; 
     margin-bottom:2px;
 }
+.col2 ul{
+	margin-right:10px
+}
 .col2 ul li {
 	list-style:none;
-	padding-top:7px;
-    font-size:medium; 
-    margin-bottom:2px;
+	padding-top:1px;
+    font-size:small; 
 
 }
-.col1 ul li img,
-.col2 ul li img{
+.col1 ul li img{
 	margin-bottom:-9px; /* aligns folders in list with text*/
 }
+.col2 li
+
 .image{
 	margin-right:5px;
 }
@@ -247,12 +250,14 @@ hr {
     padding-top: 20px;			
 }
 .menu .col2 {
-	width:19%;	
-    padding-left:13px;		
-	left:-75%;	
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	width:19%;				
     background: #e5e5e5;	
     min-height:550px;
-    padding-top: 20px;
+    padding-top:5px;
     /*	
 	-webkit-box-shadow: 2px 1px 10px 4px rgba(105,105,105,0.82);
 	-moz-box-shadow: 2px 1px 10px 4px rgba(105,105,105,0.82);
