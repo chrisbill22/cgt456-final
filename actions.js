@@ -1,21 +1,35 @@
 var currentView = ""; //Values: gdrive or dbox
 
 function openNewFolderPopup(){
-	$("#newFolderPopup").dialog({
-	    modal: true,
-	    title:"New Folder",
-	    width:360,
-	    buttons: {
-	        "Create": function() {
-	        	if(currentView == "gdrive"){
-	        		gd_createFolder();
-	        	}
-	        	
-	        	$(this).dialog( "close" );
-	        	$(this).children("input").val("");
-	        }
-	    }
-    });
+	if(currentView == ""){
+		alert("Please select a drive first.");
+	}else{
+		$("#newFolderPopup").dialog({
+		    modal: true,
+		    title:"New Folder",
+		    width:360,
+		    buttons: {
+		        "Create": function() {
+		        	if(currentView == "gdrive"){
+		        		gd_createFolder();
+		        	}else if(currentView == "dbox"){
+		        		db_createFolder();
+		        	}
+		        	
+		        	$(this).dialog( "close" );
+		        	$(this).children("input").val("");
+		        }
+		    }
+	    });
+	}
+}
+
+function runUpload(){
+	if(currentView == "gdrive"){
+		gd_uploadFile('uploadFileForm');
+	}else if(currentView == "dbox"){
+		db_uploadFile('uploadFileForm');
+	}
 }
 
 function openFileUpload(){
@@ -27,7 +41,7 @@ function openFileUpload(){
 }
 
 function dropboxAction(){
-	currentView = "gdrive";
+	currentView = "dbox";
 	if($("#startup").is(":visible")){
 		$("#startup").fadeOut('normal', function(){
 			$("#dropboxFiles").fadeIn();
@@ -40,7 +54,7 @@ function dropboxAction(){
 	
 }
 function gDriveAction(){
-	currentView = "dbox";
+	currentView = "gdrive";
 	if($("#startup").is(":visible")){
 		$("#startup").fadeOut('normal', function(){
 			$("#googleFiles").fadeIn();

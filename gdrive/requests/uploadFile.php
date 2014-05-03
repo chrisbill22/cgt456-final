@@ -5,13 +5,13 @@
 //POST - mime
 
 
-if ($_FILES["gdriveFile"]["error"] > 0) {
-	echo "Error: " . $_FILES["gdriveFile"]["error"] . "\n";
+if ($_FILES["uploadFile"]["error"] > 0) {
+	echo "Error: " . $_FILES["uploadFile"]["error"] . "\n";
 } else {
 	$folderID = $_POST['folderID'];
-	$title = $_FILES["gdriveFile"]["name"];
-	$MIME = $_FILES["gdriveFile"]["type"];
-	$filepath = $_FILES["gdriveFile"]["tmp_name"];
+	$title = $_FILES["uploadFile"]["name"];
+	$MIME = $_FILES["uploadFile"]["type"];
+	$filepath = $_FILES["uploadFile"]["tmp_name"];
 	$description = "This file was uploaded by the Purdue CGT 456 final project";
 	/*echo "FolderID: ".$folderID."\n";
 	echo "Title: " . $title . "\n";

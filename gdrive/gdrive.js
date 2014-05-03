@@ -1,6 +1,6 @@
 var files = "";
 var tempFilePath;
-var gd_finalPath = Array(Array("root","root"));
+var gd_filePath = Array(Array("root","root"));
 var gdID;
 //var accessObj;
 var gdrive_folders;
@@ -33,10 +33,10 @@ function gd_createFolder(){
 	$.ajax({
         url: gDriveSubdir+'requests/createFolder.php',  //Server script to process data
         type: 'POST',
-        data: {access_token:gdID, title:$("#newFolderPopup input").val(), parentID:gd_finalPath[gd_finalPath.length-1][1]},
+        data: {access_token:gdID, title:$("#newFolderPopup input").val(), parentID:gd_filePath[gd_filePath.length-1][1]},
     }).done(function(msg) {
     	console.log(msg);
-		gd_getFiles(gd_finalPath[gd_finalPath.length-1][1]);
+		gd_getFiles(gd_filePath[gd_filePath.length-1][1]);
     }).error(function(XHR, string, error){
 		alert("ERROR: "+string);
 		console.log(XHR);
@@ -55,9 +55,9 @@ function linkMove(){
 	});
 }
 function openMoveFile(folderID){
-	var oldFolderID = gd_finalPath[gd_finalPath.length-1][1];
-	tempFilePath = gd_finalPath;
-	gd_finalPath = Array(Array("root", "root"));
+	var oldFolderID = gd_filePath[gd_filePath.length-1][1];
+	tempFilePath = gd_filePath;
+	gd_filePath = Array(Array("root", "root"));
 	$( "#movePopup" ).dialog({
 	    modal: true,
 	    title:"Move Item",
@@ -66,15 +66,15 @@ function openMoveFile(folderID){
 	        "Move": function() {
 	        	
 	        	//console.log("MoveID = "+moveID);
-	        	//console.log("NewFolder = "+gd_finalPath[gd_finalPath.length-1][1]);
+	        	//console.log("NewFolder = "+gd_filePath[gd_filePath.length-1][1]);
 	        	//console.log("OldFoler = "+oldFolderID);
 	       
-	        	moveFile(moveID, gd_finalPath[gd_finalPath.length-1][1], oldFolderID, "results");
+	        	moveFile(moveID, gd_filePath[gd_filePath.length-1][1], oldFolderID, "results");
 	        	$( this ).dialog( "close" );
 	        }
 	    },
 	    close: function(){
-	    	gd_finalPath = tempFilePath;
+	    	gd_filePath = tempFilePath;
 	    	tempFilePath = Array();
 	    }
     });
@@ -94,7 +94,7 @@ function moveFile(fileID, newParent, oldParent){
         data: {access_token:gdID, fileID:fileID, oldParent:oldParent, newParent:newParent},
     }).done(function(msg) {
     	console.log(msg);
-		//gd_getFiles(gd_finalPath[gd_finalPath.length-1][1]);
+		//gd_getFiles(gd_filePath[gd_filePath.length-1][1]);
     }).error(function(XHR, string, error){
 		alert("ERROR: "+string);
 		console.log(XHR);
@@ -132,7 +132,7 @@ function gd_renameFile(fileID, newName){
         type: 'POST',
         data: {access_token:gdID, fileID:fileID, newFileName:newName},
     }).done(function(msg) {
-		gd_getFiles(gd_finalPath[gd_finalPath.length-1][1]);
+		gd_getFiles(gd_filePath[gd_filePath.length-1][1]);
     }).error(function(XHR, string, error){
 		alert("ERROR: "+string);
 		console.log(XHR);
@@ -142,7 +142,7 @@ function gd_renameFile(fileID, newName){
 }
 
 function gd_linkDeletes(){
-	$("a.deleteBt").click(function(event){
+	$("a.gd_deleteBt").click(function(event){
 		gDriveAction();
 		event.preventDefault();
 		gd_deleteFile($(this).attr("href"));
@@ -162,7 +162,7 @@ function gd_deleteFile(fileID){
 	    		alert("ERROR: "+msg);
 	    		stopLoading();
 	    	}else{
-	    		gd_getFiles(gd_finalPath[gd_finalPath.length-1][1]);
+	    		gd_getFiles(gd_filePath[gd_filePath.length-1][1]);
 	    	}
 	    }).error(function(XHR, string, error){
 			alert("ERROR: "+string);
@@ -179,7 +179,7 @@ function gd_uploadFile(formID){
 	//displayMsg("Starting Upload...");
 	
 	//Find the current folder directory
-	var folderID = gd_finalPath[gd_finalPath.length-1][1];
+	var folderID = gd_filePath[gd_filePath.length-1][1];
 	
 	//If these hidden forms don't exist add them
 	if(!$("#data_folderID").length){
@@ -215,7 +215,7 @@ function gd_uploadFile(formID){
     	$("#gdriveAuth").remove();
     	$("#newFilePopup").dialog( "close" );
     	//Refresh the files list
-    	gd_getFiles(gd_finalPath[gd_finalPath.length-1][1]);
+    	gd_getFiles(gd_filePath[gd_filePath.length-1][1]);
 	}
 	var formData = new FormData($('#'+formID)[0]);
     $.ajax({
@@ -290,17 +290,17 @@ function gd_linkFolders(){
 		var title = $(this).children(".fileName").html();
 		
 		var contains = false;
-		for(var i = 0; i != gd_finalPath.length; i++) {
-		   if(gd_finalPath[i][1] == id) {
+		for(var i = 0; i != gd_filePath.length; i++) {
+		   if(gd_filePath[i][1] == id) {
 		     contains = true;
 		   }
 		}
 		
 		if(!contains){
-			gd_finalPath.push(Array(title, id));
+			gd_filePath.push(Array(title, id));
 		}else{
-			while(gd_finalPath[gd_finalPath.length-1][1] != id){
-				gd_finalPath.pop();
+			while(gd_filePath[gd_filePath.length-1][1] != id){
+				gd_filePath.pop();
 			}
 		}
 		gd_getFiles(id);
@@ -333,17 +333,17 @@ function gd_displayFiles(displayDivID, foldersOnly){
 	});
 
 	
-	if(gd_finalPath.length > 1){
+	if(gd_filePath.length > 1){
 		html += "<div class='breadcrumbs'>";
-		for(x=0; x!=gd_finalPath.length; x++){
+		for(x=0; x!=gd_filePath.length; x++){
 			if(x!=0){
 				html += " > ";
 			}
-			if(x == gd_finalPath.length-1){
+			if(x == gd_filePath.length-1){
 				html += "<strong>";
 			}
-			html += "<span class='breadcrums_item'>"+capitaliseFirstLetter(gd_finalPath[x][0])+"</span>";
-			if(x == gd_finalPath.length-1){
+			html += "<span class='breadcrums_item'>"+capitaliseFirstLetter(gd_filePath[x][0])+"</span>";
+			if(x == gd_filePath.length-1){
 				html += "</strong>";
 			}
 		}
@@ -351,8 +351,8 @@ function gd_displayFiles(displayDivID, foldersOnly){
 	}
 	html += "<ul>";
 	
-	if(gd_finalPath.length > 1){
-		html += "<li><a class='gdrive_folder' href='"+(gd_finalPath[gd_finalPath.length-2][1])+"'>Back</a></li>";
+	if(gd_filePath.length > 1){
+		html += "<li><a class='gdrive_folder' href='"+(gd_filePath[gd_filePath.length-2][1])+"'>Back</a></li>";
 	}
 	
 	for(i=0; i!=gdrive_folders.length; i++){
@@ -370,7 +370,7 @@ function gd_displayFiles(displayDivID, foldersOnly){
 				
 				html += '<a href="'+gdrive_folders[i].id+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
 				
-				html += '<a href="'+gdrive_folders[i].id+'" class="deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
+				html += '<a href="'+gdrive_folders[i].id+'" class="gd_deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
 				html += '</div>';
 			}
 		html += "</li>";
@@ -394,7 +394,7 @@ function gd_displayFiles(displayDivID, foldersOnly){
 					html += '<a href="'+gdrive_files[i].webContentLink+'" target="blank"><img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download"></a> ';
 				}
 				
-				html += '<a href="'+gdrive_files[i].id+'" class="deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
+				html += '<a href="'+gdrive_files[i].id+'" class="gd_deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
 				
 				html += '<a href="'+gdrive_files[i].id+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
 				

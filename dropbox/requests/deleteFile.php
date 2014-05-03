@@ -2,6 +2,9 @@
 session_start();
 $subDir = "../";
 include("../requests/authorize.php");
-$dbxClient->delete($_GET['path']);
-header("Location: ../dropbox.php");
+$dbxClient->delete($_POST['path']);
+
+echo "True";
+
+//header("Location: ../dropbox.php");
 ?>

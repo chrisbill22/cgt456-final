@@ -107,14 +107,18 @@
 	            </div>
                 <div id="googleFolders" style="display: none;">
                 	<img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
-		            <h3>Your Drive</h3>
-		            <div class="folders">
+		            <a href="#" onclick="gd_getFiles('')" class="gdrive_folder">
+			            <h3>Your Drive</h3>
+			            <div class="folders">
+			         </a>
 	                	<button onclick="gd_getFiles('')">Get Files</button>
 	                </div>
                 </div>
                 <div id="dropboxFolders" style="display: none;">
-                	<img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
-	                <h3 class="CloudNotConnected">Your Dropbox</h3>
+                	<a href="#" onclick="db_getFiles('')" class="dbox_folder">
+	                	<img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
+		                <h3 class="CloudNotConnected">Your Dropbox</h3>
+	                </a>
 	                <div class="folders">
 	                	<button onclick="db_getFiles('')">Get Files</button>
 	                	<!--<ul>
@@ -165,9 +169,9 @@
     
     <!-- UPLOAD FILE POPUP -->
     <div id="newFilePopup" style="display: none;">
-    	<form enctype="multipart/form-data" id="uploadFileFormd">
-	    	<input type="file" id="uploadFile" name="gdriveFile" />
-	    	<input type='button' id="uploadFileBtn" value="Upload!" onclick="gd_uploadFile('uploadFileFormd')">
+    	<form enctype="multipart/form-data" id="uploadFileForm">
+	    	<input type="file" id="uploadFile" name="uploadFile" />
+	    	<input type='button' id="uploadFileBtn" value="Upload!" onclick="runUpload();">
 			<input type="hidden" name="folderID" id="data_folderID" />
 			<input type="hidden" name="access_token" id="gdriveAuth"/>
 		</form>
