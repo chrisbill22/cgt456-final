@@ -17,6 +17,7 @@ fseek($fd, 0);
 fpassthru($fd);
 fclose($fd);
 */
+/*
 if ($requestPath == "/download") {
 
     if ($dbxClient === false) {
@@ -47,5 +48,13 @@ function getPath($relative_path)
         return $_SERVER["SCRIPT_NAME"]."/".$relative_path;
     }
 }
+*/
+ 
+session_start();
+$subDir = "../";
+include("../requests/authorize.php");
+$dbxClient->getFile($_GET['path'], 'dropbox');
+header("Location: ../dropbox.php");
+
 
 ?>

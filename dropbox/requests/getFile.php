@@ -44,7 +44,7 @@ function renderFolder($entry)
 
         $cp = htmlspecialchars($cp);
         $link = getPath("?path=".htmlspecialchars($cp));
-        $listing .= "<div><a style='text-decoration: none' href='$link'>$cn</a><a href='requests/deleteFile.php?path=".htmlspecialchars($cp)."'><button>Delete</button><a href='requests/renameFile.php?path=".htmlspecialchars($cp)."'><button>Rename</button></a></div>";
+        $listing .= "<div><a style='text-decoration: none' href='$link'>$cn</a><a href='requests/downloadFile.php?path=".htmlspecialchars($cp)."'><button>Download</button><a href='requests/deleteFile.php?path=".htmlspecialchars($cp)."'><button>Delete</button><a href='requests/renameFile.php?path=".htmlspecialchars($cp)."'><button>Rename</button></a></div>";
     }
 
     return renderHtmlPage("Folder: $entry[path]", $form.$listing);
