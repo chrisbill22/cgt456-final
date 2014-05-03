@@ -93,7 +93,32 @@ function printFile($service, $fileId) {
   }
 }
 
-
+function createFolder($service, $title, $description, $parentId){
+	$file = new Google_Service_Drive_DriveFile();
+	$file->setTitle($title);
+	$file->setDescription($description);
+	  $file->setMimeType('application/vnd.google-apps.folder');
+	
+	  // Set the parent folder.
+	  if ($parentId != null) {
+	    $parent = new Google_Service_Drive_ParentReference();
+	    $parent->setId($parentId);
+	    $file->setParents(array($parent));
+	  }
+	
+	  try {
+	    $createdFile = $service->files->insert($file, array(
+	      'mimeType' => $mimeType
+	    ));
+	
+	    // Uncomment the following line to print the File ID
+	    // print 'File ID: %s' % $createdFile->getId();
+	
+	    return $createdFile;
+	  } catch (Exception $e) {
+	    print "An error occurred: " . $e->getMessage();
+	  }
+}
 
 function uploadFile($service, $title, $description, $parentId, $mimeType, $filepath) {
   $file = new Google_Service_Drive_DriveFile();
@@ -182,6 +207,7 @@ function moveFile($service, $fileId, $oldParent, $newParent){
 	}
 }
 
-if(isset($authUrl)){ ?>
-	<!--<a href="<?php echo $authUrl; ?>">You must connect an account first.</a>-->
+if(isset($authUrl)){
+?>
+<!--<a href="<?php echo $authUrl; ?>">You must connect an account first.</a>-->
 <?php } ?>

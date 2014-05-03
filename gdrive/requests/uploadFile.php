@@ -12,7 +12,7 @@ if ($_FILES["gdriveFile"]["error"] > 0) {
 	$title = $_FILES["gdriveFile"]["name"];
 	$MIME = $_FILES["gdriveFile"]["type"];
 	$filepath = $_FILES["gdriveFile"]["tmp_name"];
-	$description = "File was uploaded by the Purdue CGT 456 final project";
+	$description = "This file was uploaded by the Purdue CGT 456 final project";
 	/*echo "FolderID: ".$folderID."\n";
 	echo "Title: " . $title . "\n";
 	echo "MIME: " . $MIME . "\n";
