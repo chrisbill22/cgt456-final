@@ -5,18 +5,18 @@ if(session_id() == '') {
 }
 
 //POST - fbID -- facebook user ID
-//POST - gdID -- Google Drive auth
+//POST - dbID -- Google Drive auth
 
 include("database.php");
 
-if(!empty($_POST['fbID']) && !empty($_POST['gdID'])){
-	$query = "UPDATE main SET gdID = '".$_POST['gdID']."' WHERE fbID = '".$_POST['fbID']."'";
-	$_SESSION['gdID'] = $_POST['gdID'];
+if(!empty($_POST['dbID']) && !empty($_POST['dbID'])){
+	$query = "UPDATE main SET dbID = '".$_POST['dbID']."' WHERE fbID = '".$_POST['fbID']."'";
+	$_SESSION['dbID'] = $_POST['dbID'];
 	mysql_query($query) or die("Query Error");
 	echo "true";
-}else if(!empty($fbID) && !empty($gdID)){
-	$query = "UPDATE main SET gdID = '".$gdID."' WHERE fbID = '".$fbID."'";
-	$_SESSION['gdID'] = $gdID;
+}else if(!empty($fbID) && !empty($dbID)){
+	$query = "UPDATE main SET dbID = '".$dbID."' WHERE fbID = '".$fbID."'";
+	$_SESSION['dbID'] = $dbID;
 	mysql_query($query) or die("Query Error");
 	echo "true";
 }else{

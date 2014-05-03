@@ -22,9 +22,9 @@
 		gDriveSubdir = "gdrive/";
 		dBoxSubdir = "dropbox/";
 		google_folderDiv = "#googleFolders .folders";
-		google_fileDiv = "#googleFiles";
+		google_fileDiv = "#googleFiles .files";
 		dropbox_folderDiv = "#dropboxFolders .folders";
-		dropbox_fileDiv = "#dropboxFiles";
+		dropbox_fileDiv = "#dropboxFiles .files";
 	</script>
     
 </head>
@@ -43,38 +43,47 @@
             <div class="col1">
                 
                 <!-- Column 1 start -->
-                <img class="CloudAccount" src="images/googledrivelogo.png" width="45" border="0" height="39" alt="Google Drive Logo" />
-                <h3 class="name"></h3>
-                <div id="googleFiles">
-	                <ul>
-	                	<hr>
-	                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess
-		                    <div id="FileOptions">
-		                    	<img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download" />	
-		                    	<img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
-		                    	<img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Open"/>
-		                    	<img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"/>
-		      				</div>
-	                    </li>
-	                    <hr>
-	                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
-	                    <hr>
-	                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
-	                    <hr>
-	                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
-	                    <hr>
-	                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
-	                    <hr>
-	                    <li>easter.jpg</li>
-	                    <hr>
-	                    <li>breakfast.doc</li>
-	                    <hr>
-	                    <li>WeddingInvites.doc</li>
-	                </ul>
+                
+                <div id="startup">
+                	<h1>Startup Message</h1>
                 </div>
                 
-                <div id="dropboxFiles">
-                	
+                <div id="googleFiles" style="display: none;">
+                	<img class="CloudAccount" src="images/googledrivelogo.png" width="45" border="0" height="39" alt="Google Drive Logo" />
+                	<h3 class="name"></h3>
+                	<div class="files">
+		                <ul>
+		                	<hr>
+		                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess
+			                    <div id="FileOptions">
+			                    	<img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download" />	
+			                    	<img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete" />
+			                    	<img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Open"/>
+			                    	<img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"/>
+			      				</div>
+		                    </li>
+		                    <hr>
+		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
+		                    <hr>
+		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
+		                    <hr>
+		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
+		                    <hr>
+		                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
+		                    <hr>
+		                    <li>easter.jpg</li>
+		                    <hr>
+		                    <li>breakfast.doc</li>
+		                    <hr>
+		                    <li>WeddingInvites.doc</li>
+		                </ul>
+		        	</div>
+                </div>
+                
+                <div id="dropboxFiles" style="display: none;">
+                	<img class="CloudAccount" src="images/dropboxlogo.png" width="45" border="0" height="39" alt="Dropbox Logo" />
+                	<h3 class="name"></h3>
+                	<div class="files"></div>
                 </div>
 
                 <!-- Column 1 end -->

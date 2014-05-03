@@ -28,7 +28,7 @@ $(document).ready(function(){
 }*/
 
 function gd_createFolder(){
-	currentView = "gdrive";
+	gDriveAction();
 	startLoading("Creating Folder");
 	$.ajax({
         url: gDriveSubdir+'requests/createFolder.php',  //Server script to process data
@@ -107,7 +107,7 @@ function moveFile(fileID, newParent, oldParent){
 
 function gd_linkRename(){
 	$(".renameBt").click(function(event){
-		currentView = "gdrive";
+		gDriveAction();
 		event.preventDefault();
 		var ID = $(this).attr("href");
 		$( "#renamePopup" ).dialog({
@@ -125,7 +125,7 @@ function gd_linkRename(){
 	});
 }
 function gd_renameFile(fileID, newName){
-	currentView = "gdrive";
+	gDriveAction();
 	startLoading("Renaming File");
 	$.ajax({
         url: gDriveSubdir+'requests/renameFile.php',  //Server script to process data
@@ -143,13 +143,13 @@ function gd_renameFile(fileID, newName){
 
 function gd_linkDeletes(){
 	$("a.deleteBt").click(function(event){
-		currentView = "gdrive";
+		gDriveAction();
 		event.preventDefault();
 		gd_deleteFile($(this).attr("href"));
 	});
 }
 function gd_deleteFile(fileID){
-	currentView = "gdrive";
+	gDriveAction();
 	var confirmResult = confirm("Are you sure you would like to delete this file?"); 
 	if(confirmResult){
 		startLoading("Deleting File");
@@ -174,7 +174,7 @@ function gd_deleteFile(fileID){
 }
 
 function gd_uploadFile(formID){
-	currentView = "gdrive";
+	gDriveAction();
 	startLoading("Starting Upload...");
 	//displayMsg("Starting Upload...");
 	
@@ -241,7 +241,7 @@ function gd_uploadFile(formID){
 }
 
 function gd_getFiles(folderID){
-	currentView = "gdrive";
+	gDriveAction();
 	startLoading("Getting Folder");
 	//displayMsg("Getting folder "+folderID);
 	if(gdID == ""){
@@ -284,7 +284,7 @@ function gd_getFiles(folderID){
 }
 function gd_linkFolders(){
 	$(".gdrive_folder").click(function(event){
-		currentView = "gdrive";
+		gDriveAction();
 		event.preventDefault();
 		var id = $(this).attr("href");
 		var title = $(this).children(".fileName").html();
@@ -307,7 +307,7 @@ function gd_linkFolders(){
 	});
 }
 function gd_displayFiles(displayDivID, foldersOnly){
-	currentView = "gdrive";
+	gDriveAction();
 	console.log(displayDivID);
 	$(displayDivID).html("");
 	var html = "";

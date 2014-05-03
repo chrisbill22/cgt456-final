@@ -1,4 +1,9 @@
 <?php
+
+if(session_id() == '') {
+    session_start();
+}
+
 if (empty($subDir)) {
 	$subDir = "";
 }
@@ -62,8 +67,11 @@ if (init() === "/dropbox-auth-finish") {
 
     // NOTE: A real web app would store the access token in a database.
     $_SESSION['dbID'] = $accessToken;
-
-    header("Location: dropbox.php");
+	$dbID = $_SESSION['dbID'];
+	$fbID = $_SESSION['fbID'];
+	include("../../database/saveGD.php");
+	
+    header("Location: ../../../index.php");
 }
 function init()
 {

@@ -13,9 +13,10 @@ if ($dbxClient === false) {
 
 $path = "/";
 if (isset($_GET['path'])) $path = $_GET['path'];
+if (isset($_POST['path'])) $path = $_POST['path'];
 
 $entry = $dbxClient->getMetadataWithChildren($path);
-
+echo json_encode($entry);
 function renderFile($entry)
 {
     $metadataStr = htmlspecialchars(print_r($entry, true));

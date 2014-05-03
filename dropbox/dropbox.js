@@ -1,7 +1,8 @@
-var filePath = Array(Array("root","root"));
+var db_filePath = Array(Array("root","root"));
 var dBoxSubdir = "";
 
-
+var dbox_folders;
+var dbox_files;
 
 
 
@@ -10,11 +11,11 @@ function db_getFiles(folderID){
 	if(folderID == "root" || folderID == ""){
 		folderID = "/";
 	}
-	currentView = "dbox";
+	dropboxAction();
 	startLoading("Getting Files");
 	//displayMsg("Getting folder "+folderID);
 	if(dbID == ""){
-		$(google_fileDiv).html("No Token. <a href='requests/login.php'>Please Log In</a>");
+		$(dropbox_fileDiv).html("No Token. <a href='requests/login.php'>Please Log In</a>");
 		stopLoading();
 		return false;
 	}
@@ -22,14 +23,14 @@ function db_getFiles(folderID){
 	$.ajax({
 		url:dBoxSubdir+"requests/getFile.php",
 		type:"POST",
-		data:{access_token:dbID, folderID:folderID}
+		data:{access_token:dbID, path:folderID}
 	}).done(function(result){
 		updateLoadingProgress(70, "Rendering Results");
 		try{
-			files = eval(result);
+			files = eval("(" + result + ")").contents;
 			console.log(files);
-			//gd_displayFiles(google_fileDiv, false);
-			//gd_displayFiles(google_folderDiv, true);
+			db_displayFiles(dropbox_fileDiv, false);
+			db_displayFiles(dropbox_folderDiv, true);
 			stopLoading();
 			//gd_linkFolders();
 			//gd_linkDeletes();
@@ -37,8 +38,8 @@ function db_getFiles(folderID){
 			//gd_linkMove();
 		}catch(e){
 			if(result.indexOf("token has expired") != -1){
-				$(google_fileDiv).html("");
-				$(google_fileDiv).html("Token Has Expired<br />"+gdID);
+				$(dropbox_fileDiv).html("");
+				$(dropbox_fileDiv).html("Token Has Expired<br />"+gdID);
 			}else{
 				alert("ERROR: "+e.message);
 				console.log(result);
@@ -51,7 +52,107 @@ function db_getFiles(folderID){
 		console.log(error);
 	});
 }
+function db_displayFiles(displayDivID, foldersOnly){
+	dropboxAction();
+	console.log(displayDivID);
+	$(displayDivID).html("");
+	var html = "";
+	dbox_folders = Array();
+	dbox_files = Array();
+	
+	for(i=0; i!=files.length; i++){
+		if(files[i].icon == "folder"){
+			dbox_folders.push(files[i]);
+		}else{
+			dbox_files.push(files[i]);
+		}
+	}
+	
+	dbox_folders.sort(function(a, b){
+	    if(a.path < b.path) return -1;
+	    if(a.path > b.path) return 1;
+	    return 0;
+	});
+	dbox_files.sort(function(a, b){
+	    if(a.path < b.path) return -1;
+	    if(a.path > b.path) return 1;
+	    return 0;
+	});
 
+	
+	if(db_filePath.length > 1){
+		html += "<div class='breadcrumbs'>";
+		for(x=0; x!=db_filePath.length; x++){
+			if(x!=0){
+				html += " > ";
+			}
+			if(x == db_filePath.length-1){
+				html += "<strong>";
+			}
+			html += "<span class='breadcrums_item'>"+capitaliseFirstLetter(db_filePath[x][0])+"</span>";
+			if(x == db_filePath.length-1){
+				html += "</strong>";
+			}
+		}
+		html += "</div>";
+	}
+	html += "<ul>";
+	
+	if(db_filePath.length > 1){
+		html += "<li><a class='gdrive_folder' href='"+(db_filePath[db_filePath.length-2][1])+"'>Back</a></li>";
+	}
+	
+	for(i=0; i!=dbox_folders.length; i++){
+		html += "<li>";
+			if(!foldersOnly){
+				html += "<hr />";
+			}
+			html += "<a class='dbox_folder' href='"+dbox_folders[i].path+"'>";
+				html += "<img width='30' border='0' height='30' alt='folder' src='images/fileIcons/48x48/"+dbox_folders[i].icon+"48.gif'>";
+				html += "<span class='fileName'>"+(dbox_folders[i].path).substr(1)+"</span>";
+			html += "</a>";
+			
+			if(!foldersOnly){
+				html += '<div id="FileOptions">';
+				
+				//html += '<a href="'+dbox_folders[i].path+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
+				
+				html += '<a href="'+dbox_folders[i].path+'" class="deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
+				html += '</div>';
+			}
+		html += "</li>";
+	}
+	
+	if(!foldersOnly){
+		for(i=0; i!=dbox_files.length; i++){
+			html += "<li>";
+			html += "<hr />";
+			html += "<img width='30' border='0' height='30' alt='file' src='images/fileIcons/48x48/"+dbox_folders[i].icon+"48.gif'>";
+			html += (dbox_files[i].path).substr(1)+"<br />";
+			
+			if(!foldersOnly){
+				html += '<div id="FileOptions">';
+				
+				/*if(dbox_files[i].alternateLink){
+					html += '<a href="'+dbox_files[i].alternateLink+'" target="blank"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Open"></a> ';
+				}*/
+				
+				html += '<a href="dropbox/requests/downloadFile.php?path='+dbox_files[i].path+'" target="blank"><img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download"></a> ';
+				
+				html += '<a href="'+dbox_files[i].id+'" class="deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
+				
+				//html += '<a href="'+dbox_files[i].id+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
+				
+				//html += "<a href='"+dbox_files[i].id+"' class='moveBt'>Move</a> ";
+				html += "</div>";
+			}
+			html += "</li>";
+		}
+	}
+	html += "</ul>";
+	
+	$(displayDivID).html(html);
+}
 
 
 
