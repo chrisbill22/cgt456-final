@@ -20,7 +20,8 @@
 	width:70px;
 	height:54px;
 	top:40px;
-	right:130px;
+	/*right:130px;*/
+	right:15px;
 }
 #header .nav-Upload:hover{
 	opacity:0.85;
@@ -30,7 +31,8 @@
 	width:56px;
 	height:56px;
 	top:40px;
-	right:220px;
+	/*right:220px;*/
+	right:100px;
 }
 #header .nav-AddFolder:hover{
 	opacity:0.85;
@@ -73,6 +75,7 @@
 }
 #FileOptions{
 	float:right;
+	margin-top:-3px;
 }
 #FileOptions img:hover{
 	opacity:0.5;
@@ -80,15 +83,16 @@
 }
 a {
 	color:#369;
+	text-decoration:none;
 }
 a:hover {
-	color:#fff;
-	background:#369;
+	/*color:#fff;
+	background:#369;*/
 	text-decoration:none;
+	color:#24A3DD;
 }
 .CloudAccount
 {
-	float:left;
 	padding-top: 8px;
 	margin-right:5px;
 }
@@ -207,26 +211,32 @@ p {
 }
 .col1 ul li {
 	list-style:none;
-	padding-top:6px;
     font-size:small; 
-    margin-bottom:2px;
+    height:30px;
+    padding:5px;
 }
-.col2 ul{
-	margin-right:10px
-}
-.col2 ul li {
-	list-style:none;
-	padding-top:1px;
-    font-size:small; 
-
+.col1 ul li:hover {
+	background-color:#EEE;
 }
 .col1 ul li img{
 	margin-bottom:-9px; /* aligns folders in list with text*/
 }
+
+
+.col2 ul{
+	margin:0px;
+	padding:0px;
+	/*padding-left:10px;*/
+}
+.col2 ul li {
+	list-style:none;
+    font-size:small; 
+
+}
 .col2 li
 
-.image{
-	margin-right:5px;
+.image, img{
+	padding-right:5px;
 }
 hr {
 	color:#898989;
@@ -244,17 +254,13 @@ hr {
 		
 }
 .menu .col1 {
-	width:75%;			
-	left:21%;
+	width:71%;			
     min-height:550px;
-    padding-top: 20px;			
+    padding-top: 20px;	
+    padding-left:25px;	
 }
 .menu .col2 {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	bottom: 0px;
-	width:19%;				
+	width:25%;				
     background: #e5e5e5;	
     min-height:550px;
     padding-top:5px;
@@ -267,6 +273,88 @@ hr {
 	-moz-box-shadow: inset -1px 0px 4px 0px rgba(0,0,0,0.3);
 	box-shadow: inset -1px 0px 4px 0px rgba(0,0,0,0.3);
 }
+
+
+
+
+
+
+
+.nameHolder > *{
+	display:inline;
+	vertical-align: middle;
+}
+.nameHolder > img{
+	padding:0px;
+}
+
+
+.files ul{
+	padding-left:22px;
+}
+
+
+.col2 > ul > li{
+	border-bottom:2px solid #BBB;
+	padding:15px;
+}
+.col2 ul li{
+	padding-left:15px;	
+}
+
+.col2 > ul > li .folders > ul{
+	margin-top:20px;
+}
+
+
+.col2 ul li ul li > a > *{
+	vertical-align:middle;
+	display: inline;
+}
+
+.col2 ul li ul li{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+
+.col2 #dropboxFolders > a, .col2 #googleFolders > a{
+	width:100%;
+	display: block;
+}
+
+.col2 #dropboxFolders > a > *, .col2 #googleFolders > a > *{
+	vertical-align:middle;
+}
+
+.col2 #dropboxFolders > a img, .col2 #googleFolders > a img{
+	display: inline;
+	padding:0px;
+}
+
+.col2 #dropboxFolders > a h3, .col2 #googleFolders > a h3{
+	padding:0px;
+	padding-top:5px;
+	display: inline;
+}
+.col2 .folders ul{
+	margin:0px;
+	padding:0px;
+	padding-left:5px;
+}
+
+.breadcrumbs{
+	padding-top:15px;
+}
+.breadcrumbs span:last-child{
+	color:#24A3DD;
+}
+
+
+
+
+
+
 /* Footer styles */
 #footer {
 	clear:both;

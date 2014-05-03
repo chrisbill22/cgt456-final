@@ -106,7 +106,7 @@ function moveFile(fileID, newParent, oldParent){
 
 
 function gd_linkRename(){
-	$(".renameBt").click(function(event){
+	$(".gd_renameBt").click(function(event){
 		gDriveAction();
 		event.preventDefault();
 		var ID = $(this).attr("href");
@@ -116,9 +116,9 @@ function gd_linkRename(){
 		    title:"New Name",
 		    buttons: {
 		        Ok: function() {
-		        	//alert(ID+", "+$("#renamePopup input").val());
 		        	gd_renameFile(ID, $("#renamePopup input").val());
 		        	$( this ).dialog( "close" );
+		        	$("#renamePopup input").val("");
 		        }
 		    }
 	    });
@@ -333,7 +333,7 @@ function gd_displayFiles(displayDivID, foldersOnly){
 	});
 
 	
-	if(gd_filePath.length > 1){
+	if(gd_filePath.length > 1 && !foldersOnly){
 		html += "<div class='breadcrumbs'>";
 		for(x=0; x!=gd_filePath.length; x++){
 			if(x!=0){
@@ -352,13 +352,13 @@ function gd_displayFiles(displayDivID, foldersOnly){
 	html += "<ul>";
 	
 	if(gd_filePath.length > 1){
-		html += "<li><a class='gdrive_folder' href='"+(gd_filePath[gd_filePath.length-2][1])+"'>Back</a></li>";
+		html += "<li><a class='gdrive_folder' href='"+(gd_filePath[gd_filePath.length-2][1])+"'><img src='images/backIcon.png' alt='back' height='30' width='30' />Back</a></li>";
 	}
 	
 	for(i=0; i!=gdrive_folders.length; i++){
 		html += "<li>";
 			if(!foldersOnly){
-				html += "<hr />";
+				//html += "<hr />";
 			}
 			html += "<a class='gdrive_folder' href='"+gdrive_folders[i].id+"'>";
 				html += "<img width='30' border='0' height='30' alt='folder' src='"+gdrive_folders[i].iconLink+"'>";
@@ -368,7 +368,7 @@ function gd_displayFiles(displayDivID, foldersOnly){
 			if(!foldersOnly){
 				html += '<div id="FileOptions">';
 				
-				html += '<a href="'+gdrive_folders[i].id+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
+				html += '<a href="'+gdrive_folders[i].id+'" class="gd_renameBt"><img class="fadein" src="images/Rename.png" width="25" border="0" height="25" alt="Edit"></a> ';
 				
 				html += '<a href="'+gdrive_folders[i].id+'" class="gd_deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
 				html += '</div>';
@@ -379,24 +379,24 @@ function gd_displayFiles(displayDivID, foldersOnly){
 	if(!foldersOnly){
 		for(i=0; i!=gdrive_files.length; i++){
 			html += "<li>";
-			html += "<hr />";
+			//html += "<hr />";
 			html += "<img width='30' border='0' height='30' alt='file' src='"+gdrive_files[i].iconLink+"'>";
-			html += gdrive_files[i].title+"<br />";
+			html += "<span class='fileName'>"+gdrive_files[i].title+"</span>";
 			
 			if(!foldersOnly){
 				html += '<div id="FileOptions">';
 				
 				if(gdrive_files[i].alternateLink){
-					html += '<a href="'+gdrive_files[i].alternateLink+'" target="blank"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Open"></a> ';
+					html += '<a href="'+gdrive_files[i].alternateLink+'" target="blank"><img class="fadein" src="images/Openingoogle.png" width="25" border="0" height="25" alt="Open"></a> ';
 				}
 				
 				if(gdrive_files[i].webContentLink){
-					html += '<a href="'+gdrive_files[i].webContentLink+'" target="blank"><img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download"></a> ';
+					html += '<a href="'+gdrive_files[i].webContentLink+'" target="blank"><img class="Download" src="images/Download.png" width="25" border="0" height="25" alt="Download"></a> ';
 				}
 				
 				html += '<a href="'+gdrive_files[i].id+'" class="gd_deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
 				
-				html += '<a href="'+gdrive_files[i].id+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
+				html += '<a href="'+gdrive_files[i].id+'" class="gd_renameBt"><img class="fadein" src="images/Rename.png" width="25" border="0" height="25" alt="Edit"></a> ';
 				
 				//html += "<a href='"+gdrive_files[i].id+"' class='moveBt'>Move</a> ";
 				html += "</div>";

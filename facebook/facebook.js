@@ -122,14 +122,14 @@ function testAPI() {
 	    		dropboxID = dbData.dbID;
 	    		googleDriveID = dbData.gdID;
 	    		if(dropboxID){
-	    			$("#dropboxFolders").show();
+	    			$("#dropboxFolders").parent().show();
 	    		}else{
-	    			$("#dropboxAdd").show();
+	    			$("#dropboxAdd").parent().show();
 	    		}
 	    		if(googleDriveID){
-	    			$("#googleFolders").show();
+	    			$("#googleFolders").parent().show();
 	    		}else{
-	    			$("#googleAdd").show();
+	    			$("#googleAdd").parent().show();
 	    		}
 	    	}catch(e){
 				alert("Eval Error: "+msg);	    		

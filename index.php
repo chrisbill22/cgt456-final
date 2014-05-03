@@ -35,13 +35,68 @@
         <div id="NavLayout">
 			<a href="#" onclick="openFileUpload();"><img class="nav-Upload" src="images/Upload.png"></a>
         	<a href="#" onclick="openNewFolderPopup();"><img class="nav-AddFolder" src="images/AddFolder.png" /></a>
-        	<a href="#" class="nav-Logout">Logout</a>                    	
+        	<!--<a href="#" class="nav-Logout">Logout</a>-->                 	
 		</div>
 
         <img id="logo" src="images/CumulusLogo.png" alt="Cumulus Drive" />
     </div>
     <div class="columncontainer menu">
         <div class="colalign">
+            
+
+            <div class="col2">
+                <!-- Column 2 start -->
+				<ul>
+					
+				<li style="display: none;">
+					<div id="dropboxAdd">
+						<!--<a href="https://cgt456.genyapps.com/dropbox/pages/login.php">-->
+						<a href="dropbox/pages/login.php">
+			                <img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
+			                <h3 class="CloudNotConnected">Connect your account!</h3>
+		                </a>
+	                </div>
+                </li>
+                <li style="display: none;">
+                	<div id="gdriveAdd">
+	                	<a href="gdrive/pages/login.php">
+				            <img class="CloudNotConnected" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
+				            <h3 class="CloudNotConnected">Connect your account!</h3>
+				        </a>
+		            </div>
+	            </li style="display: none;">
+                <li>
+                	<div id="googleFolders">
+	                	<a href="#" onclick="gd_getFiles('')">
+		                	<img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
+				            <h3>Your Drive</h3>
+			            </a>
+			            <div class="folders">
+		                	<!--<button onclick="gd_getFiles('')">Get Files</button>-->
+		                </div>
+	                </div>
+                </li>
+                <li style="display: none;">
+                	<div id="dropboxFolders">
+	                	<a href="#" onclick="db_getFiles('')">
+		                	<img class="CloudAccount" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
+			                <h3>Your Dropbox</h3>
+			            </a>
+		                <div class="folders">
+		                	<!--<button onclick="db_getFiles('')">Get Files</button>-->
+		                	<!--<ul>
+			 					<li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
+			                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
+			                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
+			                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
+			                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
+			                </ul>-->
+		                </div>
+	                </div>
+                </li>
+                </ul>
+                <!-- Column 2 end -->
+            </div>
             <div class="col1">
                 
                 <!-- Column 1 start -->
@@ -51,10 +106,13 @@
                 </div>
                 
                 <div id="googleFiles" style="display: none;">
-                	<img class="CloudAccount" src="images/googledrivelogo.png" width="45" border="0" height="39" alt="Google Drive Logo" />
-                	<h3 class="name"></h3>
+                	<div class="nameHolder">
+	                	<img class="CloudAccount" src="images/googledrivelogo.png" width="45" border="0" height="39" alt="Google Drive Logo" />
+	                	<h3 class="name"></h3>
+	                </div>
                 	<div class="files">
-		                <ul>
+                		<h3>Loading...</h3>
+		                <!--<ul>
 		                	<hr>
 		                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess
 			                    <div id="FileOptions">
@@ -78,59 +136,21 @@
 		                    <li>breakfast.doc</li>
 		                    <hr>
 		                    <li>WeddingInvites.doc</li>
-		                </ul>
+		                </ul>-->
 		        	</div>
                 </div>
                 
                 <div id="dropboxFiles" style="display: none;">
-                	<img class="CloudAccount" src="images/dropboxlogo.png" width="45" border="0" height="39" alt="Dropbox Logo" />
-                	<h3 class="name"></h3>
-                	<div class="files"></div>
+                	<div class="nameHolder">
+	                	<img class="CloudAccount" src="images/dropboxlogo.png" width="45" border="0" height="39" alt="Dropbox Logo" />
+	                	<h3 class="name"></h3>
+	                </div>
+                	<div class="files">
+                		<h3>Loading...</h3>
+                	</div>
                 </div>
 
                 <!-- Column 1 end -->
-            </div>
-
-            <div class="col2">
-                <!-- Column 2 start -->
-				<ul>
-					
-				<li><div id="dropboxAdd" style="display: none;">
-					<!--<a href="https://cgt456.genyapps.com/dropbox/pages/login.php">-->
-					<a href="dropbox/pages/login.php">
-		                <img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
-		                <h3 class="CloudNotConnected">Connect your account!</h3>
-	                </a>
-                </div></li>
-                <li><div id="gdriveAdd" style="display: none;">
-                	<a href="gdrive/pages/login.php">
-			            <img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
-			            <h3>Connect your account!</h3>
-			        </a>
-	            </div></li>
-                <li><div id="googleFolders" style="display: none;">
-                	<img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
-		            <h3>Your Drive</h3>
-		            <div class="folders">
-	                	<button onclick="gd_getFiles('')">Get Files</button>
-	                </div>
-                </div></li>
-                <li><div id="dropboxFolders" style="display: none;">
-                	<img class="CloudNotConnected" src="images/dropboxlogo.png" width="40" border="0" height="37" alt="DropBox Logo" />
-	                <h3 class="CloudNotConnected">Your Dropbox</h3>
-	                <div class="folders">
-	                	<button onclick="db_getFiles('')">Get Files</button>
-	                	<!--<ul>
-		 					<li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Shared Folder" />Ben and Jess</li>
-		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />CGT</li>
-		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />EBOOK</li>
-		                    <li><img class="image" src="images/DefaultFolder.png" width="30" border="0" height="30" alt="Folder" />Spring Break</li>
-		                    <li><img class="image" src="images/SharedFolder.png" width="30" border="0" height="30" alt="Folder" />Treasurer</li>
-		                </ul>-->
-	                </div>
-                </div></li>
-                </ul>
-                <!-- Column 2 end -->
             </div>
         </div>
     </div>
@@ -163,13 +183,13 @@
     <div id="renamePopup" style="display: none;">New Name: <br /><input type='text' /></div>
     
     <!-- NEW FOLDER POPUP -->
-    <div id="newFolderPopup" ><!-- style="display: none;" -->Folder Name: <br /><input type='text' /></div>
+    <div id="newFolderPopup" style="display: none;">Folder Name: <br /><input type='text' /></div>
     
     <!-- UPLOAD FILE POPUP -->
     <div id="newFilePopup" style="display: none;">
-    	<form enctype="multipart/form-data" id="uploadFileFormd">
-	    	<input type="file" id="uploadFile" name="gdriveFile" />
-	    	<input type='button' id="uploadFileBtn" value="Upload!" onclick="gd_uploadFile('uploadFileFormd')">
+    	<form enctype="multipart/form-data" id="uploadFileForm">
+	    	<input type="file" id="uploadFile" name="uploadFile" />
+	    	<input type='button' id="uploadFileBtn" value="Upload!" onclick="mainUploadFile();">
 			<input type="hidden" name="folderID" id="data_folderID" />
 			<input type="hidden" name="access_token" id="gdriveAuth"/>
 		</form>

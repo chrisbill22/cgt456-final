@@ -1,5 +1,22 @@
 var currentView = ""; //Values: gdrive or dbox
 
+
+function mainUploadFile(){
+	console.log("hit");
+	if(currentView == "gdrive"){
+		gd_uploadFile('uploadFileForm');
+	}else{
+		db_uploadFile('uploadFileForm');
+	}
+}
+
+function resizeSidebar(){
+	if($(".col1").height() > $(".col2").height()){
+		$(".col2").height( $(".col1").height()+15);
+	}
+}
+
+
 function openNewFolderPopup(){
 	if(currentView == ""){
 		alert("Please select a drive first.");
@@ -41,6 +58,7 @@ function openFileUpload(){
 }
 
 function dropboxAction(){
+	resizeSidebar();
 	currentView = "dbox";
 	if($("#startup").is(":visible")){
 		$("#startup").fadeOut('normal', function(){
@@ -54,6 +72,7 @@ function dropboxAction(){
 	
 }
 function gDriveAction(){
+	resizeSidebar();
 	currentView = "gdrive";
 	if($("#startup").is(":visible")){
 		$("#startup").fadeOut('normal', function(){

@@ -3,6 +3,9 @@ session_start();
 $subDir = "../";
 include("../requests/authorize.php");
 $newName = $_POST["newName"];
-$dbxClient->move($_GET['path'], "/".$newName);
-header("Location: ../dropbox.php");
+$dbxClient->move($_POST['oldPath'], $_POST['path']."/".$newName);
+
+echo "True";
+
+//header("Location: ../dropbox.php");
 ?>
