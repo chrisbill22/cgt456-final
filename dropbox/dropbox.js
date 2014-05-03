@@ -1,4 +1,4 @@
-var db_filePath = Array(Array("root","root"));
+var db_filePath = Array(Array("/","/"));
 var dBoxSubdir = "";
 
 var dbox_folders;
@@ -7,7 +7,90 @@ var dbox_files;
 
 
 
+function db_linkDeletes(){
+	$("a.db_deleteBt").click(function(event){
+		dropboxAction();
+		event.preventDefault();
+		db_deleteFile($(this).attr("href"));
+	});
+}
+function db_deleteFile(fileID){
+	dropboxAction();
+	var confirmResult = confirm("Are you sure you would like to delete this file?"); 
+	if(confirmResult){
+		startLoading("Deleting File");
+		$.ajax({
+	        url: dBoxSubdir+'requests/deleteFile.php',  //Server script to process data
+	        type: 'POST',
+	        data: {access_token:gdID, path:fileID},
+	    }).done(function(msg) {
+	    	if(msg.indexOf("True") == -1){
+	    		alert("ERROR: "+msg);
+	    		stopLoading();
+	    	}else{
+	    		db_getFiles(db_filePath[db_filePath.length-1][1]);
+	    	}
+	    }).error(function(XHR, string, error){
+			alert("ERROR: "+string);
+			console.log(XHR);
+			console.log(string);
+			console.log(error);
+		});
+	}
+}
+
+
+
+function db_createFolder(){
+	dropboxAction();
+	startLoading("Creating Folder");
+	$.ajax({
+        url: dBoxSubdir+'requests/createFolder.php',  //Server script to process data
+        type: 'POST',
+        data: {access_token:dbID, newName:$("#newFolderPopup input").val(), path:db_filePath[db_filePath.length-1][1]},
+    }).done(function(msg) {
+    	if(msg != "true"){
+    		alert("an error occured");
+    	}
+    	console.log(msg);
+		db_getFiles(db_filePath[db_filePath.length-1][1]);
+    }).error(function(XHR, string, error){
+		alert("ERROR: "+string);
+		console.log(XHR);
+		console.log(string);
+		console.log(error);
+	});
+}
+
+function db_linkFolders(){
+	$(".dbox_folder").click(function(event){
+		dropboxAction();
+		event.preventDefault();
+		var id = $(this).attr("href");
+		var title = $(this).children(".fileName").html();
+		
+		var contains = false;
+		for(var i = 0; i != db_filePath.length; i++) {
+			console.log(db_filePath[i][1]+" == "+id);
+		   if(db_filePath[i][1] == id) {
+		     contains = true;
+		   }
+		}
+		
+		if(!contains){
+			db_filePath.push(Array(title, id));
+		}else{
+			while(db_filePath[db_filePath.length-1][1] != id){
+				db_filePath.pop();
+			}
+		}
+		db_getFiles(id);
+	});
+}
+
 function db_getFiles(folderID){
+	console.log("Going to "+folderID);
+	dropboxAction();
 	if(folderID == "root" || folderID == ""){
 		folderID = "/";
 	}
@@ -32,16 +115,16 @@ function db_getFiles(folderID){
 			db_displayFiles(dropbox_fileDiv, false);
 			db_displayFiles(dropbox_folderDiv, true);
 			stopLoading();
-			//gd_linkFolders();
-			//gd_linkDeletes();
-			//gd_linkRename();
-			//gd_linkMove();
+			db_linkFolders();
+			db_linkDeletes();
+			//db_linkRename();
+			//db_linkMove();
 		}catch(e){
 			if(result.indexOf("token has expired") != -1){
 				$(dropbox_fileDiv).html("");
-				$(dropbox_fileDiv).html("Token Has Expired<br />"+gdID);
+				$(dropbox_fileDiv).html("Token Has Expired<br />"+dbID);
 			}else{
-				alert("ERROR: "+e.message);
+				alert("ERRORz: "+e.message);
 				console.log(result);
 			}
 		}
@@ -89,7 +172,11 @@ function db_displayFiles(displayDivID, foldersOnly){
 			if(x == db_filePath.length-1){
 				html += "<strong>";
 			}
-			html += "<span class='breadcrums_item'>"+capitaliseFirstLetter(db_filePath[x][0])+"</span>";
+			if(capitaliseFirstLetter(db_filePath[x][0]) == "/"){
+				html += "<span class='breadcrums_item'>Root</span>";
+			}else{
+				html += "<span class='breadcrums_item'>"+capitaliseFirstLetter(db_filePath[x][0])+"</span>";
+			}
 			if(x == db_filePath.length-1){
 				html += "</strong>";
 			}
@@ -99,7 +186,7 @@ function db_displayFiles(displayDivID, foldersOnly){
 	html += "<ul>";
 	
 	if(db_filePath.length > 1){
-		html += "<li><a class='gdrive_folder' href='"+(db_filePath[db_filePath.length-2][1])+"'>Back</a></li>";
+		html += "<li><a class='dbox_folder' href='"+(db_filePath[db_filePath.length-2][1])+"'>Back</a></li>";
 	}
 	
 	for(i=0; i!=dbox_folders.length; i++){
@@ -109,7 +196,7 @@ function db_displayFiles(displayDivID, foldersOnly){
 			}
 			html += "<a class='dbox_folder' href='"+dbox_folders[i].path+"'>";
 				html += "<img width='30' border='0' height='30' alt='folder' src='images/fileIcons/48x48/"+dbox_folders[i].icon+"48.gif'>";
-				html += "<span class='fileName'>"+(dbox_folders[i].path).substr(1)+"</span>";
+				html += "<span class='fileName'>"+(dbox_folders[i].path).substr(dbox_folders[i].path.lastIndexOf("/")+1)+"</span>";
 			html += "</a>";
 			
 			if(!foldersOnly){
@@ -117,7 +204,7 @@ function db_displayFiles(displayDivID, foldersOnly){
 				
 				//html += '<a href="'+dbox_folders[i].path+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
 				
-				html += '<a href="'+dbox_folders[i].path+'" class="deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
+				html += '<a href="'+dbox_folders[i].path+'" class="db_deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
 				html += '</div>';
 			}
 		html += "</li>";
@@ -127,8 +214,8 @@ function db_displayFiles(displayDivID, foldersOnly){
 		for(i=0; i!=dbox_files.length; i++){
 			html += "<li>";
 			html += "<hr />";
-			html += "<img width='30' border='0' height='30' alt='file' src='images/fileIcons/48x48/"+dbox_folders[i].icon+"48.gif'>";
-			html += (dbox_files[i].path).substr(1)+"<br />";
+			html += "<img width='30' border='0' height='30' alt='file' src='images/fileIcons/16x16/"+dbox_files[i].icon+".gif'>";
+			html += (dbox_files[i].path).substr(dbox_files[i].path.lastIndexOf("/")+1)+"<br />";
 			
 			if(!foldersOnly){
 				html += '<div id="FileOptions">';
@@ -139,7 +226,7 @@ function db_displayFiles(displayDivID, foldersOnly){
 				
 				html += '<a href="dropbox/requests/downloadFile.php?path='+dbox_files[i].path+'" target="blank"><img class="Download" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Download"></a> ';
 				
-				html += '<a href="'+dbox_files[i].id+'" class="deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
+				html += '<a href="'+dbox_files[i].path+'" class="db_deleteBt"><img class="fadein" src="images/Delete.png" width="20" border="0" height="30" alt="Delete"></a> ';
 				
 				//html += '<a href="'+dbox_files[i].id+'" class="renameBt"><img class="fadein" src="images/additionalOptions.png" width="25" border="0" height="25" alt="Edit"></a> ';
 				
@@ -158,11 +245,12 @@ function db_displayFiles(displayDivID, foldersOnly){
 
 
 function db_uploadFile(formID){
+	dropboxAction();
 	startLoading("Starting Upload...");
 	//displayMsg("Starting Upload...");
 	
 	//Find the current folder directory
-	var folderID = filePath[filePath.length-1][1];
+	var folderID = db_filePath[db_filePath.length-1][1];
 	
 	//If these hidden forms don't exist add them
 	if(!$("#data_folderID").length){
@@ -174,7 +262,7 @@ function db_uploadFile(formID){
 	
 	//We need to set the value to actual form items because the ajax can only send the form data from the page
 	$("#data_folderID").val(folderID);
-	$("#gdriveAuth").val(accessToken);
+	$("#gdriveAuth").val(dbID);
 	
 	function errorHandler(XHR, msg, errorMsg){
 		alert("ERROR: "+errorMsg);
@@ -198,7 +286,7 @@ function db_uploadFile(formID){
     	$("#gdriveAuth").remove();
     	console.log("DONE "+msg);
     	//Refresh the files list
-    	//getFiles(filePath[filePath.length-1][1]);
+    	db_getFiles(db_filePath[db_filePath.length-1][1]);
 	}
 	var formData = new FormData($('#'+formID)[0]);
     $.ajax({

@@ -2,6 +2,13 @@
 session_start();
 $subDir = "../";
 include("../requests/authorize.php");
-$dbxClient->createFolder('/new folder');
-header("Location: ../dropbox.php");
+
+$path = $_POST['path'];
+if($path == ""){
+	$path = "/";
+}
+
+$dbxClient->createFolder($path."/".$_POST['newName']);
+echo "true";
+//header("Location: ../dropbox.php");
 ?>
