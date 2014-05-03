@@ -29,6 +29,9 @@ include("requests/getFile.php");
     </script>
     <script type="text/javascript" src="jqueryUI/js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="jqueryUI/js/jquery-ui-1.10.4.custom.min.js"></script>
+	<style>
+	#renameAppear {  }
+	</style>
 </head>
 <body>
 <a href="requests/logout.php"><button>Logout</button></a>
@@ -51,10 +54,12 @@ if ($entry['is_dir']) {
 
 </body>
 <script>
-$("#cF").click(function() {
-  <?php
-  	$dbxClient->createFolder('/new folder');
-  ?>
-});
+function toggle_visibility(id) {
+   var e = document.getElementById(id);
+   if(e.style.display == 'block')
+	  e.style.display = 'none';
+   else
+	  e.style.display = 'block';
+}
 </script>
 </html>

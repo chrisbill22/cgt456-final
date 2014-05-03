@@ -45,7 +45,18 @@ function renderFolder($entry)
 
         $cp = htmlspecialchars($cp);
         $link = getPath("?path=".htmlspecialchars($cp));
-        $listing .= "<div><a style='text-decoration: none' href='$link'>$cn</a><a href='requests/downloadFile.php?path=".htmlspecialchars($cp)."'><button>Download</button><a href='requests/deleteFile.php?path=".htmlspecialchars($cp)."'><button>Delete</button><a href='requests/renameFile.php?path=".htmlspecialchars($cp)."'><button>Rename</button></a></div>";
+        $listing .= "<div>
+					 <a style='text-decoration: none' href='$link'>$cn</a>
+		             <a href='requests/downloadFile.php?path=".htmlspecialchars($cp)."'><button>Download</button></a>
+					 <a href='requests/deleteFile.php?path=".htmlspecialchars($cp)."'><button>Delete</button></a>
+					 
+					 <div id='rename'>
+					 	<form action='requests/renameFile.php?path=".htmlspecialchars($cp)."' method='post' enctype='multipart/form-data'>
+					 	<input type='text' name='newName' id='newName' />
+						<input type='submit' value='Rename File' />
+						</form>
+					 </div>	
+					 </div>";
     }
 
     return renderHtmlPage("Folder: $entry[path]", $form.$listing);
