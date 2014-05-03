@@ -5,7 +5,7 @@
 	width:100%;
 	background:#fff;
 	min-width:600px;
-	font-size:90%;
+	font-size:small;
     font-family:'Microsoft YaHei';
     font-family:sans-serif;
 }
@@ -16,70 +16,67 @@
     left:10px;
     margin-top:-1px;
 }
-#header .nav-AddCloudDevice{
+#header .nav-Upload{
 	width:70px;
 	height:54px;
-	padding-top:40px;
-	position:absolute;
-	left:320px;
+	top:40px;
+	right:130px;
 }
-#header .nav-AddCloudDevice:hover{
-	opacity:0.8;
-	filter:alpha(opacity=80); /* For IE8 and earlier */
+#header .nav-Upload:hover{
+	opacity:0.85;
+	filter:alpha(opacity=85); /* For IE8 and earlier */
 }
-
 #header .nav-AddFolder{
 	width:56px;
 	height:56px;
-	padding-top:40px;
-	position:absolute;
-	left:1100px;
+	top:40px;
+	right:220px;
 }
 #header .nav-AddFolder:hover{
-	opacity:0.8;
-	filter:alpha(opacity=80); /* For IE8 and earlier */
+	opacity:0.85;
+	filter:alpha(opacity=85); /* For IE8 and earlier */
+}
+#NavLayout{
+	float:right;
 }
 .nav-Logout {
-	position:absolute;
-	top:18px;
-	left:1200px;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #b7bbbd) );
-	background:-moz-linear-gradient( center top, #ffffff 5%, #b7bbbd 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#b7bbbd');
-	background-color:#ffffff;
-	-webkit-border-top-left-radius:32px;
-	-moz-border-radius-topleft:32px;
-	border-top-left-radius:32px;
-	-webkit-border-top-right-radius:0px;
-	-moz-border-radius-topright:0px;
-	border-top-right-radius:0px;
-	-webkit-border-bottom-right-radius:32px;
-	-moz-border-radius-bottomright:32px;
-	border-bottom-right-radius:32px;
-	-webkit-border-bottom-left-radius:0px;
-	-moz-border-radius-bottomleft:0px;
-	border-bottom-left-radius:0px;
-	text-indent:0;
-	border:1px solid #000000;
-	display:inline-block;
-	color:#5c5c5c;
-	font-family:Arial;
-	font-size:15px;
+    position: relative;
+    top: 60px;
+    right:15px;
+    background: #f7f7f7;
 	font-weight:bold;
-	font-style:normal;
-	height:65px;
-	line-height:65px;
-	width:86px;
-	text-decoration:none;
-	text-align:center;
+    background-image: -webkit-linear-gradient(top, #f7f7f7, #e8e8e8);
+    background-image: -moz-linear-gradient(top, #f7f7f7, #e8e8e8);
+    background-image: -ms-linear-gradient(top, #f7f7f7, #e8e8e8);
+    background-image: -o-linear-gradient(top, #f7f7f7, #e8e8e8);
+    background-image: linear-gradient(to bottom, #f7f7f7, #e8e8e8);
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    font-family: Arial;
+    color: #3399cc;
+    font-size: 17px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+}
+
+.nav-Logout:hover {
+    background: #f7f7f7;
+    font-weight:bold;
+    background-image: -webkit-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background-image: -moz-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background-image: -ms-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background-image: -o-linear-gradient(top, #f7f7f7, #d1d1d1);
+    background-image: linear-gradient(to bottom, #f7f7f7, #d1d1d1);
+    text-decoration: none;
+    color: #3399cc;
 }
 #FileOptions{
 	float:right;
 }
 #FileOptions img:hover{
-opacity:0.5;
-filter:alpha(opacity=50); /* For IE8 and earlier */
-}
+	opacity:0.5;
+	filter:alpha(opacity=50); /* For IE8 and earlier */
 }
 a {
 	color:#369;
