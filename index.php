@@ -106,12 +106,14 @@
                 	<h1>Welcome!</h1>
                 	<h3>First Time?</h3>
                 	<p>If it is your first time to the site welcome! Cumulus Drive is a service dedicated to making your life easier. Accessing all of your cloud based storage through one portal has never been easier!</p>
-                	<p>To add your devices, click on the link on the right sidebar.</p>
-                	<h3>Fetures</h3>
+                	<p>To add your devices, click on the link on the left sidebar.</p>
+                	<h3>Features</h3>
                 	<ul>
-                		<li>Dropbox - </li>
+                		<li>Upload files to Dropbox or Google Drive</li>
+                		<li>Download files from Dropbox or Google Drive</li>
+                		<li>Rename files in your Dropbox or Google Drive</li>
+                		<li>Opne Google Drive files in Google's document editor</li>
                 	</ul>
-                	<h3>Future</h3>
                 </div>
                 
                 <div id="googleFiles" style="display: none;">

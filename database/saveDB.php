@@ -9,14 +9,14 @@ if(session_id() == '') {
 
 include("database.php");
 
-if(!empty($_POST['dbID']) && !empty($_POST['gdID'])){
-	$query = "UPDATE main SET gdID = '".$_POST['gdID']."' WHERE dbID = '".$_POST['dbID']."'";
-	$_SESSION['gdID'] = $_POST['gdID'];
+if(!empty($_POST['dbID']) && !empty($_POST['fbID'])){
+	$query = "UPDATE main SET dbID = '".$_POST['dbID']."' WHERE fbID = '".$_POST['fbID']."'";
+	$_SESSION['dbID'] = $_POST['dbID'];
 	mysql_query($query) or die("Query Error");
 	echo "true";
-}else if(!empty($dbID) && !empty($dbID)){
-	$query = "UPDATE main SET gdID = '".$gdID."' WHERE dbID = '".$dbID."'";
-	$_SESSION['gdID'] = $gdID;
+}else if(!empty($_SESSION['fbID']) && !empty($_SESSION['dbID'])){
+	$query = "UPDATE main SET dbID = '".$_SESSION['dbID']."' WHERE fbID = '".$_SESSION['fbID']."'";
+	$_SESSION['dbID'] = $_SESSION['dbID'];
 	mysql_query($query) or die("Query Error");
 	echo "true";
 }else{

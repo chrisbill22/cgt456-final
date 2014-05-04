@@ -69,6 +69,7 @@ if (init() === "/dropbox-auth-finish") {
     $_SESSION['dbID'] = $accessToken;
 	$dbID = $_SESSION['dbID'];
 	$fbID = $_SESSION['fbID'];
+	echo $dbID."<br /><br />".$fbID;
 	include("../../database/saveGD.php");
 	
     header("Location: ../../../index.php");
