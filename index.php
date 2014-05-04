@@ -1,4 +1,5 @@
 <?php session_start(); include("database/database.php"); $fbID = "test"; $_SESSION['fbID'] = $fbID; ?>
+<?php //session_destroy(); exit;?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
 <head>
@@ -58,14 +59,14 @@
 	                </div>
                 </li>
                 <li style="display: none;">
-                	<div id="gdriveAdd">
+                	<div id="googleAdd">
 	                	<a href="gdrive/pages/login.php">
 				            <img class="CloudNotConnected" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
 				            <h3 class="CloudNotConnected">Connect your account!</h3>
 				        </a>
 		            </div>
-	            </li style="display: none;">
-                <li>
+	            </li>
+                <li style="display: none;">
                 	<div id="googleFolders">
 	                	<a href="#" onclick="gd_getFiles('')">
 		                	<img class="CloudAccount" src="images/googledrivelogo.png" width="35" border="0" height="31" alt="Google Drive Logo" />
@@ -102,7 +103,15 @@
                 <!-- Column 1 start -->
                 
                 <div id="startup">
-                	<h1>Startup Message</h1>
+                	<h1>Welcome!</h1>
+                	<h3>First Time?</h3>
+                	<p>If it is your first time to the site welcome! Cumulus Drive is a service dedicated to making your life easier. Accessing all of your cloud based storage through one portal has never been easier!</p>
+                	<p>To add your devices, click on the link on the right sidebar.</p>
+                	<h3>Fetures</h3>
+                	<ul>
+                		<li>Dropbox - </li>
+                	</ul>
+                	<h3>Future</h3>
                 </div>
                 
                 <div id="googleFiles" style="display: none;">

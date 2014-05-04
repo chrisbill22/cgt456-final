@@ -260,7 +260,7 @@ hr {
 .menu .col2 {
 	width:25%;				
     background: #e5e5e5;	
-    min-height:550px;
+    min-height:565px;
     padding-top:5px;
     /*	
 	-webkit-box-shadow: 2px 1px 10px 4px rgba(105,105,105,0.82);
@@ -321,16 +321,16 @@ hr {
 	display: block;
 }
 
-.col2 #dropboxFolders > a > *, .col2 #googleFolders > a > *, .col2 #dropboxAdd > a > *, .col2 #gdriveAdd > a > *{
+.col2 #dropboxFolders > a > *, .col2 #googleFolders > a > *, .col2 #dropboxAdd > a > *, .col2 #googleAdd > a > *{
 	vertical-align:middle;
 }
 
-.col2 #dropboxFolders > a img, .col2 #googleFolders > a img, .col2 #dropboxAdd > a img, .col2 #gdriveAdd > a img{
+.col2 #dropboxFolders > a img, .col2 #googleFolders > a img, .col2 #dropboxAdd > a img, .col2 #googleAdd > a img{
 	display: inline;
 	padding:0px;
 }
 
-.col2 #dropboxFolders > a h3, .col2 #googleFolders > a h3, .col2 #dropboxAdd > a h3, .col2 #gdriveAdd > a h3{
+.col2 #dropboxFolders > a h3, .col2 #googleFolders > a h3, .col2 #dropboxAdd > a h3, .col2 #googleAdd > a h3{
 	padding:0px;
 	padding-top:5px;
 	display: inline;

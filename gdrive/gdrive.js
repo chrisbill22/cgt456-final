@@ -208,6 +208,7 @@ function gd_uploadFile(formID){
 	    }
 	}
 	function successHandler(msg){
+		console.log("TEMP PATH = "+msg);
 		//displayMsg("Upload of file "+msg+" complete.");
 		
     	//Remove the hidden form items for security reasons
@@ -269,7 +270,8 @@ function gd_getFiles(folderID){
 		}catch(e){
 			if(result.indexOf("token has expired") != -1){
 				$(google_fileDiv).html("");
-				$(google_fileDiv).html("Token Has Expired<br />"+gdID);
+				$(google_fileDiv).html("Token Has Expired<br /><a href='gdrive/pages/login.php'>Login</a>");
+				stopLoading();
 			}else{
 				alert("ERROR: "+e.message);
 				console.log(result);

@@ -167,7 +167,7 @@ function db_getFiles(folderID){
 		}catch(e){
 			if(result.indexOf("token has expired") != -1){
 				$(dropbox_fileDiv).html("");
-				$(dropbox_fileDiv).html("Token Has Expired<br />"+dbID);
+				$(dropbox_fileDiv).html("Token Has Expired<br /><a href='dropbox/pages/login.php'>Login</a>");
 			}else{
 				alert("ERRORz: "+e.message);
 				console.log(result);
