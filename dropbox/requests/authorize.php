@@ -70,7 +70,7 @@ if (init() === "/dropbox-auth-finish") {
 	$dbID = $_SESSION['dbID'];
 	$fbID = $_SESSION['fbID'];
 	echo $dbID."<br /><br />".$fbID;
-	include("../../database/saveGD.php");
+	include("../../database/saveDB.php");
 	
     header("Location: ../../../index.php");
 }
