@@ -134,11 +134,12 @@ function uploadFile($service, $title, $description, $parentId, $mimeType, $filep
 	}
 	
 	try {
-	    $data = file_get_contents();
-	
+	    $data = file_get_contents($filepath);
+		$file->setAppDataContents($data);
 	    $createdFile = $service->files->insert($file, array(
 	      'data' => $data,
 	      'mimeType' => $mimeType,
+	      'uploadType' => 'media'
 	    ));
 	
 	    // Uncomment the following line to print the File ID
